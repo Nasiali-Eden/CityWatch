@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../Reusables/footer/logo.dart';
+import '../Shared/login.dart';
+
 
 
 class LandingPage extends StatelessWidget {
@@ -11,63 +14,7 @@ class LandingPage extends StatelessWidget {
       backgroundColor: Colors.teal[400],
       body: Stack(
         children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black, // Background color
-                        padding: const EdgeInsets.all(16), // Button padding
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(5), // Rounded corners
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BuyerRegistration()),);
-                      },
-                      child: const Center(
-                        child: Text(
-                          "Buy",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 20), // Space between the buttons
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black, // Background color
-                        padding: const EdgeInsets.all(16), // Button padding
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(5), // Rounded corners
-                        ),
-                      ),
-                      onPressed: () {
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => VendorRegistration()),);
-                      },
-                      child: const Center(
-                        child: Text(
-                          "Sell",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+
           Positioned(
             bottom: 85, // Position the text and Sign In link
             left: 0,
