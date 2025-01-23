@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../Home/landing_page.dart';
+import '../Reusables/components/square_tile.dart';
+import '../Reusables/footer/logo.dart';
+
 class LoginPage extends StatefulWidget {
 
   const LoginPage({super.key});
