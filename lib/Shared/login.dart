@@ -1,3 +1,4 @@
+import 'package:citywatch/Organization/Home/org_home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,6 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Home/landing_page.dart';
 import '../Reusables/components/square_tile.dart';
 import '../Reusables/footer/logo.dart';
+import '../Services/Authentication/auth.dart';
+import '../User/Home/user_home.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -287,74 +290,35 @@ class _LoginPageState extends State<LoginPage> {
 
     // Check vendors collection
     FirebaseFirestore.instance
-        .collection('vendors')
+        .collection('Organizations')
         .doc(user.uid)
         .get()
-        .then((DocumentSnapshot vendorSnapshot) {
+        .then((DocumentSnapshot OrgSnapshot) {
       if (kDebugMode) {
-        print('Vendor snapshot exists: ${vendorSnapshot.exists}');
+        print('Org snapshot exists: ${OrgSnapshot.exists}');
       }
 
-      if (vendorSnapshot.exists) {
+      if (OrgSnapshot.exists) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const VendorHome()),
+          MaterialPageRoute(builder: (context) => const OrganizationHome()),
         );
       } else {
         // Check buyers collection
         FirebaseFirestore.instance
-            .collection('buyers')
+            .collection('Users')
             .doc(user.uid)
             .get()
-            .then((DocumentSnapshot buyerSnapshot) {
+            .then((DocumentSnapshot UserSnapshot) {
           if (kDebugMode) {
-            print('Buyer snapshot exists: ${buyerSnapshot.exists}');
+            print('User Snapshot exists: ${UserSnapshot.exists}');
           }
 
-          if (buyerSnapshot.exists) {
-            // Check preferences
-            FirebaseFirestore.instance
-                .collection('preferences')
-                .doc(user.uid)
-                .get()
-                .then((DocumentSnapshot preferencesSnapshot) {
-              if (preferencesSnapshot.exists) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BuyerHome()),
-                );
-              } else {
-                String gender = buyerSnapshot['gender'];
-                if (kDebugMode) {
-                  print('User gender: $gender');
-                }
-
-                if (gender == 'male') {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MaleClothingSelectionScreen()),
-                  );
-                } else if (gender == 'female') {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FeMaleClothingSelectionScreen()),
-                  );
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Gender is not set.')),
-                  );
-                }
-              }
-            })
-                .catchError((error) {
-              print("Error fetching preferences data: $error");
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                    content: Text('Error fetching preferences data: $error')),
-              );
-            });
+          if (UserSnapshot.exists) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const UserHome()),
+            );
           } else {
             print('User does not exist in either collection');
             ScaffoldMessenger.of(context).showSnackBar(
@@ -364,17 +328,17 @@ class _LoginPageState extends State<LoginPage> {
           }
         })
             .catchError((error) {
-          print("Error fetching buyer data: $error");
+          print("Error fetching User data: $error");
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error fetching buyer data: $error')),
+            SnackBar(content: Text('Error fetching User data: $error')),
           );
         });
       }
     })
         .catchError((error) {
-      print("Error fetching vendor data: $error");
+      print("Error fetching Organization data: $error");
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error fetching vendor data: $error')),
+        SnackBar(content: Text('Error fetching Organization data: $error')),
       );
     });
   }
