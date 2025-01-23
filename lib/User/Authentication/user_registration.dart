@@ -189,10 +189,10 @@ class _UserRegistrationState extends State<UserRegistration> {
                         _authService.signUp(
                           emailController.text,
                           passwordController.text,
-                          'user',
+                          'User',
                           {
-                            'First Name': firstNameController.text,
-                            'Last Name': lastNameController.text,
+                            'FirstName': firstNameController.text,
+                            'LastName': lastNameController.text,
                             'Contact': contactController.text,
                             'gender': _gender == gender.male ? 'male' : 'female',
                           },

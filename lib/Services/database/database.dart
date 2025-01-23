@@ -7,24 +7,21 @@ class DatabaseService {
     Map<String, dynamic> userData = {
       'email': email,
       'role': role,
-      'firstName': additionalData['firstName'],
     };
 
-    if (role == 'buyer') {
-      userData['dob'] = additionalData['dob'];
+    if (role == 'User') {
+      userData['FirstName'] = additionalData['FirstName'];
+      userData['LastName'] = additionalData['LastName'];
+      userData['Contact'] = additionalData['Contact'];
       userData['gender'] = additionalData['gender'];
-    } else if (role == 'vendor') {
-      userData['lastName'] = additionalData['lastName'];
-      userData['idNo'] = additionalData['idNo'];
-      userData['shopName'] = additionalData['shopName'];
-      userData['products'] = additionalData['products'];
-      userData['county'] = additionalData['county'];
-      userData['constituency'] = additionalData['constituency'];
-      userData['street'] = additionalData['street'];
-      userData['description'] = additionalData['description'];
+    } else if (role == 'Organization') {
+      userData['Name'] = additionalData['Name'];
+      userData['Location'] = additionalData['Location'];
+      userData['Type'] = additionalData['Type'];
+      userData['Contact'] = additionalData['Contact'];
     }
     
-    String collection = role == 'vendor' ? 'vendors' : 'buyers';
+    String collection = role == 'Organizations' ? 'Organizations' : 'Users';
     await _firebaseFirestore.collection(collection).doc(uid).set(userData);
   }
 }
