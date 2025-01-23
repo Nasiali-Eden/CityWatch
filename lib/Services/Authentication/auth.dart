@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:mtush_store/services/database/database.dart';
-import '../../models/user.dart'; // Import the database service
+import '../../Models/user.dart';
+import '../database/database.dart'; // Import the database service
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
