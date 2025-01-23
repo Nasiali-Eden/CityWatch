@@ -1,0 +1,377 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class LoginPage extends StatefulWidget {
+
+  const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+
+  bool _isObscure = true;
+  bool visible = false;
+  final _formkey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            SingleChildScrollView( // Ensures scrolling for all content
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 50),
+                  Text(
+                    "Login",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.orange[700],
+                      fontSize: 40,
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Form(
+                      key: _formkey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            cursorColor: Colors.black,
+                            cursorWidth: 0.5,
+                            controller: emailController,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.grey.shade100),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.black54, width: 0.1),
+                              ),
+                              fillColor: Colors.grey.shade100,
+                              filled: true,
+                              labelText: 'Email',
+                              labelStyle: TextStyle(color: Colors.teal[600]),
+                            ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Email cannot be empty";
+                              }
+                              if (!RegExp(
+                                  "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                  .hasMatch(value)) {
+                                return "Please enter a valid email";
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                          ),
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            cursorColor: Colors.black,
+                            cursorWidth: 0.5,
+                            controller: passwordController,
+                            obscureText: _isObscure,
+                            decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(_isObscure ? Icons.visibility : Icons
+                                    .visibility_off),
+                                onPressed: () {
+                                  setState(() {
+                                    _isObscure = !_isObscure;
+                                  });
+                                },
+                              ),
+                              labelText: 'Password',
+                              labelStyle: TextStyle(color: Colors.teal[600]),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.grey.shade100),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.black54, width: 0.1),
+                              ),
+                              fillColor: Colors.grey.shade100,
+                              filled: true,
+                            ),
+                            validator: (value) {
+                              RegExp regex = RegExp(r'^.{6,}$');
+                              if (value!.isEmpty) {
+                                return "Password cannot be empty";
+                              }
+                              if (!regex.hasMatch(value)) {
+                                return "Please enter a valid password with at least 6 characters";
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    padding: const EdgeInsets.all(20),
+                    margin: const EdgeInsets.symmetric(horizontal: 110),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange[700],
+                        padding: const EdgeInsets.all(15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onPressed: () async {
+                        setState(() {
+                          visible = true;
+                        });
+
+                        if (_formkey.currentState!.validate()) {
+                          try {
+                            User? user = await _authService.signIn(
+                                emailController.text, passwordController.text);
+                            if (user != null) {
+                              route(user); // Call route function
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Sign in failed'),
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    'Error occurred during sign in: $e'),
+                              ),
+                            );
+                          }
+                        }
+                        setState(() {
+                          visible = false;
+                        });
+                      },
+                      child: const Center(
+                        child: Text(
+                          "Sign In",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Visibility(
+                    maintainSize: true,
+                    maintainAnimation: true,
+                    maintainState: true,
+                    visible: visible,
+                    child: CircularProgressIndicator(
+                      color: Colors.orange[400], // Changed to make it visible
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25, vertical: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Forgot Password?',
+                          style: TextStyle(color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 35),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            thickness: 0.5,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Text(
+                            'Or Continue With',
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            thickness: 0.5,
+                            color: Colors.grey[400],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 50),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SquareTile(imagePath: 'images/google.png'),
+                      SizedBox(width: 10),
+                      SquareTile(imagePath: 'images/apple.png'),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Not a Member?',
+                        style: TextStyle(color: Colors.grey[700],),
+                      ),
+                      const SizedBox(width: 4),
+                      GestureDetector(
+                        child: const Text(
+                          'Register Now',
+                          style: TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LandingPage()),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 50),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FooterLogoTeal(),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void route(User user) {
+    if (kDebugMode) {
+      print('Routing user with ID: ${user.uid}');
+    }
+
+    // Check vendors collection
+    FirebaseFirestore.instance
+        .collection('vendors')
+        .doc(user.uid)
+        .get()
+        .then((DocumentSnapshot vendorSnapshot) {
+      if (kDebugMode) {
+        print('Vendor snapshot exists: ${vendorSnapshot.exists}');
+      }
+
+      if (vendorSnapshot.exists) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const VendorHome()),
+        );
+      } else {
+        // Check buyers collection
+        FirebaseFirestore.instance
+            .collection('buyers')
+            .doc(user.uid)
+            .get()
+            .then((DocumentSnapshot buyerSnapshot) {
+          if (kDebugMode) {
+            print('Buyer snapshot exists: ${buyerSnapshot.exists}');
+          }
+
+          if (buyerSnapshot.exists) {
+            // Check preferences
+            FirebaseFirestore.instance
+                .collection('preferences')
+                .doc(user.uid)
+                .get()
+                .then((DocumentSnapshot preferencesSnapshot) {
+              if (preferencesSnapshot.exists) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const BuyerHome()),
+                );
+              } else {
+                String gender = buyerSnapshot['gender'];
+                if (kDebugMode) {
+                  print('User gender: $gender');
+                }
+
+                if (gender == 'male') {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MaleClothingSelectionScreen()),
+                  );
+                } else if (gender == 'female') {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FeMaleClothingSelectionScreen()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Gender is not set.')),
+                  );
+                }
+              }
+            })
+                .catchError((error) {
+              print("Error fetching preferences data: $error");
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                    content: Text('Error fetching preferences data: $error')),
+              );
+            });
+          } else {
+            print('User does not exist in either collection');
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('User does not exist in either collection')),
+            );
+          }
+        })
+            .catchError((error) {
+          print("Error fetching buyer data: $error");
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error fetching buyer data: $error')),
+          );
+        });
+      }
+    })
+        .catchError((error) {
+      print("Error fetching vendor data: $error");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error fetching vendor data: $error')),
+      );
+    });
+  }
+}
