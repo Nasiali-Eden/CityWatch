@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Home/landing_page.dart';
 import '../Models/user.dart';
+import '../Organization/Home/org_home.dart';
 import '../User/Home/user_home.dart';
 
 class Wrapper extends StatelessWidget {
@@ -39,7 +40,7 @@ class RoleBasedHome extends StatelessWidget {
 
         if (snapshot.hasData && snapshot.data!.exists) {
           final role = snapshot.data!.get('role');
-          if (role == "vendor") {
+          if (role == "Organization") {
             return const OrganizationHome();
           } else {
             return const UserHome();
@@ -58,7 +59,7 @@ class RoleBasedHome extends StatelessWidget {
     if (orgDoc.exists) return orgDoc;
 
     final usersDoc =
-    await FirebaseFirestore.instance.collection('buyers').doc(userId).get();
+    await FirebaseFirestore.instance.collection('Users').doc(userId).get();
     if (usersDoc.exists) return usersDoc;
 
     // If no document is found in either collection, throw an error

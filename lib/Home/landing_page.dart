@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../common_screens/login_page.dart';
-import '../customer/registration/c_reg.dart';
-import '../shared/footer/logo.dart';
-import '../vendor/Registration/reg_form.dart';
+
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});

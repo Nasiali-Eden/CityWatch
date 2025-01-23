@@ -7,14 +7,14 @@ import 'package:citywatch/Organization/Home/Volunteers/org_volunteers.dart';
 import 'package:flutter/material.dart';
 
 
-class UserHome extends StatefulWidget {
-  const UserHome({super.key});
+class OrganizationHome extends StatefulWidget {
+  const OrganizationHome({super.key});
 
   @override
-  State<UserHome> createState() => _UserHomeState();
+  State<OrganizationHome> createState() => _OrganizationHomeState();
 }
 
-class _UserHomeState extends State<UserHome> {
+class _OrganizationHomeState extends State<OrganizationHome> {
   int currentPage = 0;
 
   final List<Widget> pages = [
