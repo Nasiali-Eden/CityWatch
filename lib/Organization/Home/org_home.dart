@@ -1,7 +1,9 @@
-import 'package:citywatch/User/Home/Help/user_help.dart';
-import 'package:citywatch/User/Home/HomeScreen/user_homescreen.dart';
-import 'package:citywatch/User/Home/Profile/user_profile.dart';
-import 'package:citywatch/User/Home/Reports/user_reports.dart';
+
+import 'package:citywatch/Organization/Home/Dashboard/org_dashboard.dart';
+import 'package:citywatch/Organization/Home/Incidents/org_incidents.dart';
+import 'package:citywatch/Organization/Home/OurTeam/org_team.dart';
+import 'package:citywatch/Organization/Home/Profile/org_profile.dart';
+import 'package:citywatch/Organization/Home/Volunteers/org_volunteers.dart';
 import 'package:flutter/material.dart';
 
 
@@ -16,10 +18,11 @@ class _UserHomeState extends State<UserHome> {
   int currentPage = 0;
 
   final List<Widget> pages = [
-    const UserHomeScreen(),
-    const UserReports(),
-    const UserHelp(),
-    const UserProfile(),
+    const OrgDashboard(),
+    const OrgIncidents(),
+    const OrgTeam(),
+    const OrgVolunteers(),
+    const OrgProfile()
   ];
 
   @override
@@ -54,7 +57,7 @@ class _UserHomeState extends State<UserHome> {
                   },
                 ),
                 Text(
-                  'Home',
+                  'Dashboard',
                   style: TextStyle(
                     fontSize: 11.0,
                     color: currentPage == 0
@@ -81,7 +84,7 @@ class _UserHomeState extends State<UserHome> {
                   },
                 ),
                 Text(
-                  'Reports',
+                  'Incidents',
                   style: TextStyle(
                     fontSize: 11.0,
                     color: currentPage == 1
@@ -108,10 +111,37 @@ class _UserHomeState extends State<UserHome> {
                   },
                 ),
                 Text(
-                  'Help',
+                  'Our Team',
                   style: TextStyle(
                     fontSize: 11.0,
                     color: currentPage == 2
+                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        : const Color.fromRGBO(40, 40, 40, 1),
+                  ),
+                )
+              ],
+            ),
+            Column(
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart_outlined,
+                    color: currentPage == 3
+                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        : const Color.fromRGBO(40, 40, 40, 1),
+                  ),
+                  iconSize: 25.0,
+                  onPressed: () {
+                    setState(() {
+                      currentPage = 3;
+                    });
+                  },
+                ),
+                Text(
+                  'Volunteers',
+                  style: TextStyle(
+                    fontSize: 11.0,
+                    color: currentPage == 3
                         ? const Color.fromRGBO(0, 161, 154, 1)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
