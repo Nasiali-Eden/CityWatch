@@ -19,24 +19,19 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
   final _formKey = GlobalKey<FormState>();
   final AuthService _authService = AuthService();
 
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController NameController = TextEditingController();
+  final TextEditingController TypeController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController dobController = TextEditingController();
+  final TextEditingController ContactController = TextEditingController();
+  final TextEditingController LocationController = TextEditingController();
 
   String email = '';
   String password = '';
-  String firstName = '';
-  String lastName = '';
+  String name = '';
+  String type = '';
   String contact = '';
-
-  gender? _gender = gender.male;
-  void _onGenderChanged(gender? value) {
-    setState(() {
-      _gender = value;
-    });
-  }
+  String location = '';
 
   void _onEmailChanged(String value) {
     setState(() {
@@ -50,15 +45,21 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
     });
   }
 
-  void _onFirstNameChanged(String value) {
+  void _onLocationChanged(String value) {
     setState(() {
-      firstName = value;
+      location = value;
     });
   }
 
-  void _onLastNameChanged(String value) {
+  void _onNameChanged(String value) {
     setState(() {
-      lastName = value;
+      name = value;
+    });
+  }
+
+  void _onTypeChanged(String value) {
+    setState(() {
+      type = value;
     });
   }
 
@@ -95,53 +96,31 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                 MyTextField(
                   validator: (value) => value!.isEmpty ? 'Enter First Name' : null,
                   obscureText: false,
-                  controller: firstNameController,
-                  labelText: 'First Name',
-                  onChanged: _onFirstNameChanged,
+                  controller: NameController,
+                  labelText: 'Organization Name',
+                  onChanged: _onNameChanged,
                 ),
                 const SizedBox(height: 10),
                 MyTextField(
                   validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
                   obscureText: false,
-                  controller: lastNameController,
-                  labelText: 'Last Name',
-                  onChanged: _onLastNameChanged,
+                  controller: TypeController,
+                  labelText: 'Organization Type(e.g Health)',
+                  onChanged: _onTypeChanged,
                 ),
                 MyTextField(
                   validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
                   obscureText: false,
-                  controller: lastNameController,
+                  controller: ContactController,
                   labelText: 'Phone Number',
                   onChanged: _onContactChanged,
                 ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    children: [
-                      const Text('Gender:'),
-                      const SizedBox(width: 16),
-                      Radio<gender>(
-                        groupValue: _gender,
-                        value: gender.male,
-                        onChanged: (gender? value) {
-                          _onGenderChanged(value);
-                        },
-                        activeColor: Colors.teal,
-                      ),
-                      const Text('Male'),
-                      const SizedBox(width: 16),
-                      Radio<gender>(
-                        groupValue: _gender,
-                        value: gender.female,
-                        onChanged: (gender? value) {
-                          _onGenderChanged(value);
-                        },
-                        activeColor: Colors.teal,
-                      ),
-                      const Text('Female'),
-                    ],
-                  ),
+                MyTextField(
+                  validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
+                  obscureText: false,
+                  controller: LocationController,
+                  labelText: 'Location',
+                  onChanged: _onLocationChanged,
                 ),
                 const SizedBox(height: 10),
                 MyTextField(
@@ -189,11 +168,12 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                         _authService.signUp(
                           emailController.text,
                           passwordController.text,
-                          'buyer',
+                          'Organization',
                           {
-                            'firstName': firstNameController.text,
-                            'dob': dobController.text,
-                            'gender': _gender == gender.male ? 'male' : 'female',
+                            'Name': NameController.text,
+                            'Location': LocationController.text,
+                            'Type': TypeController.text,
+                            'Contact': ContactController.text,
                           },
                         ).then((result) {
                           if (result != null) {
