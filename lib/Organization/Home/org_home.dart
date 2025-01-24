@@ -153,14 +153,14 @@ class _OrganizationHomeState extends State<OrganizationHome> {
                 IconButton(
                   icon: Icon(
                     Icons.shopping_cart_outlined,
-                    color: currentPage == 3
+                    color: currentPage == 4
                         ? const Color.fromRGBO(0, 161, 154, 1)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                   iconSize: 25.0,
                   onPressed: () {
                     setState(() {
-                      currentPage = 3;
+                      currentPage = 4;
                     });
                   },
                 ),
