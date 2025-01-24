@@ -87,7 +87,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                     "Sign Up",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.orange[700],
+                      color: Colors.deepPurpleAccent,
                       fontSize: 40,
                     ),
                   ),
@@ -108,6 +108,8 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                   labelText: 'Organization Type(e.g Health)',
                   onChanged: _onTypeChanged,
                 ),
+                const SizedBox(height: 10),
+
                 MyTextField(
                   validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
                   obscureText: false,
@@ -115,6 +117,8 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                   labelText: 'Phone Number',
                   onChanged: _onContactChanged,
                 ),
+                const SizedBox(height: 10),
+
                 MyTextField(
                   validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
                   obscureText: false,
@@ -152,7 +156,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                   margin: const EdgeInsets.symmetric(horizontal: 105),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange[700],
+                      backgroundColor: Colors.deepPurpleAccent,
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
