@@ -37,7 +37,7 @@ class MyTextField extends StatelessWidget {
           fillColor: Colors.grey.shade100,
           filled: true,
           labelText: labelText,
-          labelStyle: TextStyle(color: Colors.teal[600],fontSize: 14),
+          labelStyle: TextStyle(color: Colors.deepPurpleAccent,fontSize: 14),
         ),
         validator: validator, // Pass the validator function here
         onChanged: onChanged,

@@ -86,7 +86,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                     "Sign Up",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.orange[700],
+                      color: Colors.deepPurpleAccent,
                       fontSize: 40,
                     ),
                   ),
@@ -107,6 +107,8 @@ class _UserRegistrationState extends State<UserRegistration> {
                   labelText: 'Last Name',
                   onChanged: _onLastNameChanged,
                 ),
+                const SizedBox(height: 25),
+
                 MyTextField(
                   validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
                   obscureText: false,
@@ -127,7 +129,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                         onChanged: (gender? value) {
                           _onGenderChanged(value);
                         },
-                        activeColor: Colors.teal,
+                        activeColor: Colors.deepPurpleAccent,
                       ),
                       const Text('Male'),
                       const SizedBox(width: 16),
@@ -173,7 +175,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                   margin: const EdgeInsets.symmetric(horizontal: 105),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orange[700],
+                      backgroundColor: Colors.deepPurpleAccent,
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
