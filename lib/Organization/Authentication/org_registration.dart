@@ -13,7 +13,7 @@ class OrganizationRegistration extends StatefulWidget {
   _OrganizationRegistrationState createState() => _OrganizationRegistrationState();
 }
 
-enum gender { male, female }
+enum type { Health, Police, Fire, Floods, Wildlife,}
 
 class _OrganizationRegistrationState extends State<OrganizationRegistration> {
   final _formKey = GlobalKey<FormState>();
@@ -29,9 +29,17 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
   String email = '';
   String password = '';
   String name = '';
-  String type = '';
   String contact = '';
   String location = '';
+
+
+  type? _type = type.Police;
+  void _onTypeChanged(type? value) {
+    setState(() {
+      _type = value;
+    });
+  }
+
 
   void _onEmailChanged(String value) {
     setState(() {
@@ -57,11 +65,6 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
     });
   }
 
-  void _onTypeChanged(String value) {
-    setState(() {
-      type = value;
-    });
-  }
 
   void _onContactChanged(String value) {
     setState(() {
@@ -94,19 +97,101 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                 ),
                 const SizedBox(height: 25),
                 MyTextField(
-                  validator: (value) => value!.isEmpty ? 'Enter First Name' : null,
+                  validator: (value) => value!.isEmpty ? 'Enter Org Name' : null,
                   obscureText: false,
                   controller: NameController,
                   labelText: 'Organization Name',
                   onChanged: _onNameChanged,
                 ),
                 const SizedBox(height: 10),
-                MyTextField(
-                  validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
-                  obscureText: false,
-                  controller: TypeController,
-                  labelText: 'Organization Type(e.g Health)',
-                  onChanged: _onTypeChanged,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 13),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Organization Type:',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.deepPurpleAccent),
+                      ),
+                      const SizedBox(height: 8), // Add spacing between text and buttons
+                      Wrap(
+                        spacing: 7, // Space between radio buttons
+                        runSpacing: 0, // Space between lines if wrapped
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<type>(
+                                groupValue: _type,
+                                value: type.Health,
+                                onChanged: (type? value) {
+                                  _onTypeChanged(value);
+                                },
+                                activeColor: Colors.deepPurpleAccent,
+                              ),
+                              const Text('Health'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<type>(
+                                groupValue: _type,
+                                value: type.Floods,
+                                onChanged: (type? value) {
+                                  _onTypeChanged(value);
+                                },
+                                activeColor: Colors.deepPurpleAccent,
+                              ),
+                              const Text('Floods'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<type>(
+                                groupValue: _type,
+                                value: type.Police,
+                                onChanged: (type? value) {
+                                  _onTypeChanged(value);
+                                },
+                                activeColor: Colors.deepPurpleAccent,
+                              ),
+                              const Text('Police'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<type>(
+                                groupValue: _type,
+                                value: type.Fire,
+                                onChanged: (type? value) {
+                                  _onTypeChanged(value);
+                                },
+                                activeColor: Colors.deepPurpleAccent,
+                              ),
+                              const Text('Fire'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<type>(
+                                groupValue: _type,
+                                value: type.Wildlife,
+                                onChanged: (type? value) {
+                                  _onTypeChanged(value);
+                                },
+                                activeColor: Colors.deepPurpleAccent,
+                              ),
+                              const Text('Wildlife'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
 
@@ -114,7 +199,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                   validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
                   obscureText: false,
                   controller: ContactController,
-                  labelText: 'Phone Number',
+                  labelText: 'Contact',
                   onChanged: _onContactChanged,
                 ),
                 const SizedBox(height: 10),
