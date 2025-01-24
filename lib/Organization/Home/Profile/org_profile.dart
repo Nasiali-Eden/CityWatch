@@ -8,6 +8,9 @@ class OrgProfile extends StatefulWidget {
 }
 
 class _OrgProfileState extends State<OrgProfile> {
+
+  Color maroon = Color(0xFFD52020);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +42,461 @@ class _OrgProfileState extends State<OrgProfile> {
           ),
         ),
       ),
-      body: Center(
-        child: Text('Profile'),
-      ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 12), // Add spacing at the top
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.05,
+                        color: Colors.deepPurpleAccent,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text(
+                        'Account Management',
+                        style: TextStyle(
+                            color: Colors.deepPurple, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                          thickness: 0.08,
+                          color: Colors.deepPurpleAccent
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 3,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15, vertical: 10), // Adjust padding
+                margin:
+                const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.grey[50],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Account Details",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Password and Security",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Add address",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(
+                height: 10,
+              ),
+
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.08,
+                        color: Colors.teal[600],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text(
+                        'Notifications',
+                        style: TextStyle(
+                            color: Colors.deepPurple, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.08,
+                        color: Colors.teal[600],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 3,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15, vertical: 10), // Adjust padding
+                margin:
+                const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.grey[50],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Email Notifications",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Daily Notifications",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Turn off",
+                            style: TextStyle(
+                              color: maroon,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.08,
+                        color: Colors.teal[600],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text(
+                        'About City Watch',
+                        style: TextStyle(
+                            color:Colors.deepPurple, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 0.08,
+                        color: Colors.teal[600],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15, vertical: 10), // Adjust padding
+                margin:
+                const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.grey[50],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "How to Report an incident",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Privacy Policy",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "Terms and Conditions",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "About CityWatch",
+                            style: TextStyle(
+                              color: maroon,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.black54,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 8), // Adjust padding
+                margin:
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.grey[50],
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      child: Text(
+                        'Inbox',
+                        style: TextStyle(color: maroon),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 8), // Adjust padding
+                margin:
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.grey[50],
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      child: Text(
+                          'Feedback',
+                          style: TextStyle(color:maroon)
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 8), // Adjust padding
+                margin:
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.grey[50],
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      child: Text(
+                          'Switch Account',
+                          style: TextStyle(color: maroon)
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 8), // Adjust padding
+                margin:
+                const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: Colors.grey[50],
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                      child: Text(
+                        'Sign Out',
+                        style: TextStyle(color: maroon),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ), // You can add more widgets here as needed
+            ],
+          ),
+        )
     );
   }
 }
