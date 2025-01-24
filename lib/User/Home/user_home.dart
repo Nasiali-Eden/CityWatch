@@ -43,7 +43,7 @@ class _UserHomeState extends State<UserHome> {
                   icon: Icon(
                     Icons.auto_awesome_mosaic_outlined,
                     color: currentPage == 0
-                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        ? const Color.fromRGBO(124, 77, 255, 1.0)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                   iconSize: 25.0,
@@ -58,7 +58,7 @@ class _UserHomeState extends State<UserHome> {
                   style: TextStyle(
                     fontSize: 11.0,
                     color: currentPage == 0
-                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        ? const Color.fromRGBO(124, 77, 255, 1.0)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                 )
@@ -68,9 +68,9 @@ class _UserHomeState extends State<UserHome> {
               children: [
                 IconButton(
                   icon: Icon(
-                    Icons.explore_outlined,
+                    Icons.map_outlined,
                     color: currentPage == 1
-                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        ? const Color.fromRGBO(124, 77, 255, 1.0)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                   iconSize: 25.0,
@@ -85,7 +85,7 @@ class _UserHomeState extends State<UserHome> {
                   style: TextStyle(
                     fontSize: 11.0,
                     color: currentPage == 1
-                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        ? const Color.fromRGBO(124, 77, 255, 1.0)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                 )
@@ -95,9 +95,9 @@ class _UserHomeState extends State<UserHome> {
               children: [
                 IconButton(
                   icon: Icon(
-                    Icons.shopify_outlined,
+                    Icons.help,
                     color: currentPage == 2
-                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        ? const Color.fromRGBO(124, 77, 255, 1.0)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                   iconSize: 25.0,
@@ -112,7 +112,7 @@ class _UserHomeState extends State<UserHome> {
                   style: TextStyle(
                     fontSize: 11.0,
                     color: currentPage == 2
-                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        ? const Color.fromRGBO(124, 77, 255, 1.0)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                 )
@@ -122,9 +122,9 @@ class _UserHomeState extends State<UserHome> {
               children: [
                 IconButton(
                   icon: Icon(
-                    Icons.shopping_cart_outlined,
+                    Icons.person,
                     color: currentPage == 3
-                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        ? const Color.fromRGBO(124, 77, 255, 1.0)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                   iconSize: 25.0,
@@ -139,7 +139,7 @@ class _UserHomeState extends State<UserHome> {
                   style: TextStyle(
                     fontSize: 11.0,
                     color: currentPage == 3
-                        ? const Color.fromRGBO(0, 161, 154, 1)
+                        ? const Color.fromRGBO(124, 77, 255, 1.0)
                         : const Color.fromRGBO(40, 40, 40, 1),
                   ),
                 )
