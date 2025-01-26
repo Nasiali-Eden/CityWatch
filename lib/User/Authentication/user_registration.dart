@@ -86,7 +86,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                     "Sign Up",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepPurpleAccent,
+                      color: Colors.deepPurple,
                       fontSize: 40,
                     ),
                   ),
@@ -175,7 +175,7 @@ class _UserRegistrationState extends State<UserRegistration> {
                   margin: const EdgeInsets.symmetric(horizontal: 105),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurpleAccent,
+                      backgroundColor: Colors.deepPurple,
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
