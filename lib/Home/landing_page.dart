@@ -13,9 +13,27 @@ class LandingPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+          // Positioned text at the top
+          Positioned(
+            top: 150, // Distance from the top of the screen
+            left: 0,
+            right: 0,
+            child: Center(
+              child: Text(
+                'Welcome to CityWatch',
+                style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+
+                ),
+              ),
+            ),
+          ),
+          // Center section with containers
           Center(
             child: SizedBox(
-              width: 0.98 * deviceWidth, // 98% of the device width
+              width: 0.90 * deviceWidth, // 90% of the device width
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -25,6 +43,7 @@ class LandingPage extends StatelessWidget {
                     label: 'Normal User',
                     color: Colors.blue.shade100,
                   ),
+                  const SizedBox(width: 8), // Add horizontal space
                   // Container for Organisation
                   _buildSquareContainer(
                     icon: Icons.business,
@@ -35,6 +54,7 @@ class LandingPage extends StatelessWidget {
               ),
             ),
           ),
+          // Sign-in link
           Positioned(
             bottom: 85, // Position the text and Sign In link
             left: 0,
@@ -65,9 +85,10 @@ class LandingPage extends StatelessWidget {
               ],
             ),
           ),
+          // Footer logo at the bottom
           Align(
             alignment: Alignment.bottomCenter,
-            child:  FooterLogo(), // Add your Footer widget here
+            child: FooterLogo(), // Add your Footer widget here
           ),
         ],
       ),
