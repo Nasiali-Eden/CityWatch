@@ -21,7 +21,7 @@ class DatabaseService {
       userData['Contact'] = additionalData['Contact'];
     }
     
-    String collection = role == 'Organizations' ? 'Organizations' : 'Users';
+    String collection = role == 'Organization' ? 'Organizations' : 'Users';
     await _firebaseFirestore.collection(collection).doc(uid).set(userData);
   }
 }

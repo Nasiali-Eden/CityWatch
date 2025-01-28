@@ -1,3 +1,5 @@
+import 'package:citywatch/Organization/Authentication/org_registration.dart';
+import 'package:citywatch/User/Authentication/user_registration.dart';
 import 'package:flutter/material.dart';
 import '../Reusables/footer/logo.dart';
 import '../Shared/login.dart';
@@ -15,17 +17,16 @@ class LandingPage extends StatelessWidget {
         children: [
           // Positioned text at the top
           Positioned(
-            top: 150, // Distance from the top of the screen
+            top: 150,
             left: 0,
             right: 0,
             child: Center(
               child: Text(
-                'Welcome to CityWatch',
+                'CityWatch',
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                   color: Colors.deepPurple,
-
                 ),
               ),
             ),
@@ -33,7 +34,7 @@ class LandingPage extends StatelessWidget {
           // Center section with containers
           Center(
             child: SizedBox(
-              width: 0.90 * deviceWidth, // 90% of the device width
+              width: 0.90 * deviceWidth,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -42,13 +43,31 @@ class LandingPage extends StatelessWidget {
                     icon: Icons.person,
                     label: 'Normal User',
                     color: Colors.blue.shade100,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const UserRegistration(),
+                        ),
+                      );
+                      // Navigate or perform any action for Normal User
+                    },
                   ),
-                  const SizedBox(width: 8), // Add horizontal space
+                  const SizedBox(width: 16), // Add horizontal space
                   // Container for Organisation
                   _buildSquareContainer(
                     icon: Icons.business,
                     label: 'Organisation',
                     color: Colors.green.shade100,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrganizationRegistration(),
+                        ),
+                      );
+                      // Navigate or perform any action for Organisation
+                    },
                   ),
                 ],
               ),
@@ -56,7 +75,7 @@ class LandingPage extends StatelessWidget {
           ),
           // Sign-in link
           Positioned(
-            bottom: 85, // Position the text and Sign In link
+            bottom: 85,
             left: 0,
             right: 0,
             child: Row(
@@ -99,33 +118,37 @@ class LandingPage extends StatelessWidget {
     required IconData icon,
     required String label,
     required Color color,
+    required VoidCallback onPressed, // Function for the onPressed action
   }) {
     return Expanded(
-      child: AspectRatio(
-        aspectRatio: 1, // Makes the container a square
-        child: Container(
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 48,
-                color: Colors.black87,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+      child: GestureDetector(
+        onTap: onPressed, // Attach the onPressed function here
+        child: AspectRatio(
+          aspectRatio: 1, // Makes the container a square
+          child: Container(
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  size: 48,
                   color: Colors.black87,
                 ),
-              ),
-            ],
+                const SizedBox(height: 8),
+                Text(
+                  label,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
