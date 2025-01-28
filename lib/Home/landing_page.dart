@@ -44,7 +44,7 @@ class LandingPage extends StatelessWidget {
                     label: 'Normal User',
                     color: Colors.blue.shade100,
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const UserRegistration(),
@@ -60,7 +60,7 @@ class LandingPage extends StatelessWidget {
                     label: 'Organisation',
                     color: Colors.green.shade100,
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => OrganizationRegistration(),

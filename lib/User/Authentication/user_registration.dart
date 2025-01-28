@@ -200,7 +200,12 @@ class _UserRegistrationState extends State<UserRegistration> {
                           },
                         ).then((result) {
                           if (result != null) {
-                            LoginPage();
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginPage(),
+                              ),
+                            );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text('Sign-up failed. Please try again.')),
