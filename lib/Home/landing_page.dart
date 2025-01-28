@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Reusables/footer/logo.dart';
 import '../Shared/login.dart';
 
@@ -11,7 +10,7 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal[400],
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
 
