@@ -2,18 +2,39 @@ import 'package:flutter/material.dart';
 import '../Reusables/footer/logo.dart';
 import '../Shared/login.dart';
 
-
-
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
-
+          Center(
+            child: SizedBox(
+              width: 0.98 * deviceWidth, // 98% of the device width
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // Container for Normal User
+                  _buildSquareContainer(
+                    icon: Icons.person,
+                    label: 'Normal User',
+                    color: Colors.blue.shade100,
+                  ),
+                  // Container for Organisation
+                  _buildSquareContainer(
+                    icon: Icons.business,
+                    label: 'Organisation',
+                    color: Colors.green.shade100,
+                  ),
+                ],
+              ),
+            ),
+          ),
           Positioned(
             bottom: 85, // Position the text and Sign In link
             left: 0,
@@ -23,7 +44,7 @@ class LandingPage extends StatelessWidget {
               children: [
                 const Text(
                   'Already Have an Account?',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                 ),
                 const SizedBox(width: 4),
                 GestureDetector(
@@ -33,7 +54,12 @@ class LandingPage extends StatelessWidget {
                         color: Colors.blueAccent, fontWeight: FontWeight.bold),
                   ),
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginPage()),);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
                   },
                 ),
               ],
@@ -41,9 +67,46 @@ class LandingPage extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: FooterLogo(), // Add your Footer widget here
+            child:  FooterLogo(), // Add your Footer widget here
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildSquareContainer({
+    required IconData icon,
+    required String label,
+    required Color color,
+  }) {
+    return Expanded(
+      child: AspectRatio(
+        aspectRatio: 1, // Makes the container a square
+        child: Container(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 48,
+                color: Colors.black87,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
