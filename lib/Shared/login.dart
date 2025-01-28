@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                               fillColor: Colors.grey.shade100,
                               filled: true,
                               labelText: 'Email',
-                              labelStyle: TextStyle(color: Colors.teal[600]),
+                              labelStyle: TextStyle(color: Colors.deepPurple),
                             ),
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                               ),
                               labelText: 'Password',
-                              labelStyle: TextStyle(color: Colors.teal[600]),
+                              labelStyle: TextStyle(color: Colors.deepPurple),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                     color: Colors.grey.shade100),
