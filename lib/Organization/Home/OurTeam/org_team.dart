@@ -11,6 +11,7 @@ class _OrgTeamState extends State<OrgTeam> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(56.0), // Set the height of the AppBar
         child: Container(
