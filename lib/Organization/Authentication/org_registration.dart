@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../Reusables/footer/footer.dart';
 import '../../Reusables/footer/logo.dart';
+import '../../Reusables/inputfields/password.dart';
 import '../../Reusables/inputfields/textfields.dart';
 import '../../Services/Authentication/auth.dart';
 import '../../Shared/login.dart';
@@ -228,13 +229,17 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                   onChanged: _onEmailChanged,
                 ),
                 const SizedBox(height: 10),
-                MyTextField(
+                PasswordInput(
                   controller: passwordController,
-                  obscureText: true,
-                  validator: (value) =>
-                  value!.length < 6 ? 'Password must be at least 6 characters' : null,
-                  labelText: 'Password',
                   onChanged: _onPasswordChanged,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Password is required';
+                    } else if (value.length < 6) {
+                      return 'Password must be at least 6 characters';
+                    }
+                    return null;
+                  },
                 ),
                 const SizedBox(height: 20),
                 Container(
