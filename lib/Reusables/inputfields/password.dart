@@ -35,11 +35,11 @@ class _PasswordInputState extends State<PasswordInput> {
           fillColor: Colors.grey.shade100,
           filled: true,
           labelText: 'Password',
-          labelStyle: TextStyle(color: Colors.teal[600], fontSize: 14),
+          labelStyle: TextStyle(color: Colors.deepPurple, fontSize: 14),
           suffixIcon: IconButton(
             icon: Icon(
               _obscureText ? Icons.visibility_off : Icons.visibility,
-              color: Colors.teal[600],
+              color: Colors.grey[50],
             ),
             onPressed: () {
               setState(() {
