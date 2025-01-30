@@ -19,7 +19,7 @@ class _UserReportsState extends State<UserReports> {
             color: Colors.deepPurple[700],
             boxShadow: [
               BoxShadow(
-                color: Colors.white.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
+                color: Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
                 blurRadius: 4.0, // Adjust the blur radius
                 offset: Offset(0, 3), // Position of the shadow
               ),
@@ -30,7 +30,7 @@ class _UserReportsState extends State<UserReports> {
             Colors.transparent, // Make the AppBar background transparent
             elevation: 0, // Remove default shadow
             title: Text(
-              'Reports',
+              'Incidents',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,

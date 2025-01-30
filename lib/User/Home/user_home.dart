@@ -81,7 +81,7 @@ class _UserHomeState extends State<UserHome> {
                   },
                 ),
                 Text(
-                  'Reports',
+                  'Incidents',
                   style: TextStyle(
                     fontSize: 11.0,
                     color: currentPage == 1
