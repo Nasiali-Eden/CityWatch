@@ -8,6 +8,7 @@ class UserHomeScreen extends StatefulWidget {
 }
 
 class _UserHomeScreenState extends State<UserHomeScreen> {
+  Color maroon = Color(0xFFD52020);
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
@@ -59,26 +60,26 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                   border: Border.all(
                     color: Color.fromRGBO(182, 182, 182, 1.0),
                   )),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    child: Icon(
+              child: GestureDetector(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
                       Icons.add,
                       color: Colors.teal,
                     ),
-                    onTap: () {},
-                  ),
-                  Text(
-                    'Report Incident',
-                    style: TextStyle(color: Colors.teal),
-                  )
-                ],
+                    Text(
+                      'Report Incident',
+                      style: TextStyle(color: Colors.teal),
+                    )
+                  ],
+                ),
+                onTap: (){},
               ),
             ),
             Divider(
               color: Colors.deepPurple, // Line color
-              thickness: 4.0, // Line thickness
+              thickness: 3.0, // Line thickness
               height: 15.0, // Space above and below the line
             ),
             Container(
@@ -87,7 +88,8 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                 'Top Updates',
                 style: TextStyle(color: Colors.deepPurple, fontSize: 20),
               ),
-            )
+            ),
+
           ],
         ),
       ),
