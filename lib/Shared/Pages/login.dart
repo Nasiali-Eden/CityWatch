@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../Home/landing_page.dart';
-import '../Reusables/components/square_tile.dart';
-import '../Reusables/footer/logo.dart';
-import '../Services/Authentication/auth.dart';
-import '../User/Home/user_home.dart';
+import '../../Home/landing_page.dart';
+import '../../Reusables/components/square_tile.dart';
+import '../../Reusables/footer/logo.dart';
+import '../../Services/Authentication/auth.dart';
+import '../../User/Home/user_home.dart';
 
 class LoginPage extends StatefulWidget {
 

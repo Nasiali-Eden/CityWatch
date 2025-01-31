@@ -2,7 +2,7 @@ import 'package:citywatch/Organization/Authentication/org_registration.dart';
 import 'package:citywatch/User/Authentication/user_registration.dart';
 import 'package:flutter/material.dart';
 import '../Reusables/footer/logo.dart';
-import '../Shared/login.dart';
+import '../Shared/Pages/login.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});

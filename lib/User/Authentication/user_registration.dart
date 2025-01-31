@@ -4,7 +4,7 @@ import '../../Reusables/footer/logo.dart';
 import '../../Reusables/inputfields/password.dart';
 import '../../Reusables/inputfields/textfields.dart';
 import '../../Services/Authentication/auth.dart';
-import '../../Shared/login.dart';
+import '../../Shared/Pages/login.dart';
 
 
 class UserRegistration extends StatefulWidget {
