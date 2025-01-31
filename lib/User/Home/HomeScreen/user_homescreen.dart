@@ -1,3 +1,4 @@
+import 'package:citywatch/Shared/Inputs/post_incident.dart';
 import 'package:flutter/material.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -74,7 +75,11 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
                     )
                   ],
                 ),
-                onTap: (){},
+                onTap: (){
+                  Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => PostIncident()),
+                  );
+                },
               ),
             ),
             Divider(
