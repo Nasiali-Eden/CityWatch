@@ -99,8 +99,8 @@ class _PostArticleState extends State<PostArticle> {
                 ),
                 Wrap(
                   alignment: WrapAlignment.center,
-                  spacing: 10,
-                  runSpacing: 10,
+                  spacing: 5,
+                  runSpacing: 5,
                   children: [
                     _buildStyleRadioButton('Use Current Location'),
                     _buildStyleRadioButton('Use Custom Location'),
