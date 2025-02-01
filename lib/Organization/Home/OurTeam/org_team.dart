@@ -1,4 +1,7 @@
+import 'package:citywatch/Organization/Home/post_article.dart';
 import 'package:flutter/material.dart';
+
+import '../../../Shared/Inputs/post_incident.dart';
 
 class OrgTeam extends StatefulWidget {
   const OrgTeam({super.key});
@@ -8,8 +11,11 @@ class OrgTeam extends StatefulWidget {
 }
 
 class _OrgTeamState extends State<OrgTeam> {
+
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -40,9 +46,7 @@ class _OrgTeamState extends State<OrgTeam> {
           ),
         ),
       ),
-      body: Center(
-        child: Text('My Team'),
-      ),
+
     );
   }
 
