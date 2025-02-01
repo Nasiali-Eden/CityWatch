@@ -1,7 +1,5 @@
-import 'package:citywatch/Organization/Home/post_article.dart';
+import 'package:citywatch/Organization/Home/OurTeam/add_team.dart';
 import 'package:flutter/material.dart';
-
-import '../../../Shared/Inputs/post_incident.dart';
 
 class OrgTeam extends StatefulWidget {
   const OrgTeam({super.key});
@@ -11,7 +9,6 @@ class OrgTeam extends StatefulWidget {
 }
 
 class _OrgTeamState extends State<OrgTeam> {
-
   @override
   Widget build(BuildContext context) {
     final double deviceWidth = MediaQuery.of(context).size.width;
@@ -25,7 +22,8 @@ class _OrgTeamState extends State<OrgTeam> {
             color: Colors.deepPurple[700],
             boxShadow: [
               BoxShadow(
-                color: Colors.white.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
+                color: Colors.white.withAlpha(
+                    (0.05 * 255).toInt()), // Shadow color with opacity
                 blurRadius: 4.0, // Adjust the blur radius
                 offset: Offset(0, 3), // Position of the shadow
               ),
@@ -33,7 +31,7 @@ class _OrgTeamState extends State<OrgTeam> {
           ),
           child: AppBar(
             backgroundColor:
-            Colors.transparent, // Make the AppBar background transparent
+                Colors.transparent, // Make the AppBar background transparent
             elevation: 0, // Remove default shadow
             title: Text(
               'My Team',
@@ -46,8 +44,47 @@ class _OrgTeamState extends State<OrgTeam> {
           ),
         ),
       ),
-
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              margin: EdgeInsets.all(10),
+              width: 0.90 * deviceWidth,
+              height: 50,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: Color.fromRGBO(182, 182, 182, 1.0),
+                  )),
+              child: GestureDetector(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.add,
+                      color: Colors.black54,
+                    ),
+                    Text(
+                      'Edit Teams',
+                      style: TextStyle(color: Colors.teal[800]),
+                    )
+                  ],
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddTeam()),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
-
 }
