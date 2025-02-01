@@ -301,13 +301,15 @@ class _PostIncidentState extends State<PostIncident> {
         onSelected: (selected) {
           _toggleLocation(location);
         },
-        backgroundColor: Colors.white, // Background color when not selected
-        selectedColor: Colors.deepPurple, // Background color when selected
+        backgroundColor: Colors.white,
+        // Background color when not selected
+        selectedColor: Colors.deepPurple,
+        // Background color when selected
         side: _selectedTypes.contains(location)
             ? BorderSide.none // No border when selected
             : BorderSide(
-                color: Colors.deepPurple, // Border color when not selected
-              ),
+          color: Colors.deepPurple, // Border color when not selected
+        ),
       ),
     );
   }
