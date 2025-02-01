@@ -21,14 +21,7 @@ class LandingPage extends StatelessWidget {
             left: 0,
             right: 0,
             child: Center(
-              child: Text(
-                'CityWatch',
-                style: TextStyle(
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
-                ),
-              ),
+              child: Image.asset('pngs/logotext.png', scale: 1.5)
             ),
           ),
           // Center section with containers
