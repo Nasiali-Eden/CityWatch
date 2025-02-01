@@ -55,6 +55,7 @@ class _PostIncidentState extends State<PostIncident> {
 
   @override
   Widget build(BuildContext context) {
+    final double deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -88,39 +89,68 @@ class _PostIncidentState extends State<PostIncident> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(0.0),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
-              TextFormField(
-                controller: _headlineController,
-                decoration: InputDecoration(
-                  labelText: 'Headline',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.w300),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade100),
+              Column(
+                crossAxisAlignment:
+                    CrossAxisAlignment.stretch, // Stretch to full width
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                    height: 30,
+                    color: Colors.teal[700],
+                    child: Text(
+                      'New Report',
+                      style: TextStyle(color: Colors.white, fontSize: 15),
+                    ),
                   ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black54, width: 0.1),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextFormField(
+                  controller: _headlineController,
+                  decoration: InputDecoration(
+                    labelText: 'Input Headline',
+                    labelStyle: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.w300),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade100),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black54, width: 0.1),
+                    ),
                   ),
+                  onChanged: _onHeadlineChanged,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please add the headline';
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: _onHeadlineChanged,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please add the headline';
-                  }
-                  return null;
-                },
               ),
               SizedBox(
                 height: 20,
               ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'What type of Incident are you reporting?',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 17),
+                ),
+              ),
               Wrap(
                 alignment: WrapAlignment.center,
-                spacing: 10,
-                runSpacing: 10,
+                spacing: 5,
+                runSpacing: 5,
                 children: [
                   _buildStyleRadioButton('Health'),
                   _buildStyleRadioButton('Fire'),
@@ -129,56 +159,93 @@ class _PostIncidentState extends State<PostIncident> {
                 ],
               ),
               SizedBox(
-                height: 20,
+                height: 7,
               ),
-              TextFormField(
-                controller: _descriptionController,
-                maxLines: 3,
-                decoration: InputDecoration(
-                  labelText: 'Description',
-                  labelStyle: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.w300),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade100),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextFormField(
+                  controller: _descriptionController,
+                  maxLines: 3,
+                  decoration: InputDecoration(
+                    labelText: 'Description of Incident',
+                    labelStyle: const TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.w300),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade100),
+                    ),
+                    focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black54, width: 0.1),
+                    ),
                   ),
-                  focusedBorder: const UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black54, width: 0.1),
-                  ),
+                  onChanged: _onDescriptionChanged,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please add Description';
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: _onDescriptionChanged,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please add Description';
-                  }
-                  return null;
-                },
+              ),
+              SizedBox(
+                height: 7,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Choose Location',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 17),
+                ),
               ),
               Wrap(
                 alignment: WrapAlignment.center,
-                spacing: 10,
-                runSpacing: 10,
+                spacing: 5,
+                runSpacing: 8,
                 children: [
                   _buildLocationRadioButton('Use Current Location'),
                   _buildLocationRadioButton('Use Custom Location'),
                 ],
               ),
-              SizedBox(height: 15,),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Upload Images',
-                    style: TextStyle(color: Colors.deepPurple),
-                  ),
+              SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Click if you wish to add images',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 17),
                 ),
               ),
-              SizedBox(height: 35,),
+              SizedBox(
+                height: 5,
+              ),
+              Center(
+                  child: Icon(
+                Icons.add_a_photo_outlined,
+                size: 15,
+                color: Colors.grey,
+              )),
+              SizedBox(
+                height: 35,
+              ),
               Center(
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple,
+                    padding: const EdgeInsets.all(15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
                   onPressed: () {},
                   child: Text(
                     'Post',
-                    style: TextStyle(color: Colors.deepPurple),
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
