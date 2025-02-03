@@ -159,10 +159,17 @@ class _PostArticleState extends State<PostArticle> {
                 ),
                 Center(
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepPurple,
+                      padding: const EdgeInsets.all(15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
                     onPressed: () {},
                     child: Text(
                       'Post',
-                      style: TextStyle(color: Colors.deepPurple),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
