@@ -100,6 +100,7 @@ class _PostIncidentState extends State<PostIncident> {
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+                    margin: EdgeInsets.symmetric(vertical: 0),
                     height: 35,
                     color: Colors.teal[700],
                     child: Text(

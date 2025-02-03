@@ -46,8 +46,9 @@ class _OrgDashboardState extends State<OrgDashboard> {
         ),
       ),
       body: Padding(padding: EdgeInsets.all(0.0),
-        child: Column(
+        child: ListView(
           children: [
+            SizedBox(height: 10,),
             Row(
               children: [
                 Container(
@@ -56,6 +57,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
                   height: 50,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
+                    color: Colors.teal[600],
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Color.fromRGBO(182, 182, 182, 1.0),
@@ -66,11 +68,11 @@ class _OrgDashboardState extends State<OrgDashboard> {
                       children: [
                         Icon(
                           Icons.add,
-                          color: Colors.teal,
+                          color: Colors.white,
                         ),
                         Text(
                           'Report Incident',
-                          style: TextStyle(color: Colors.teal),
+                          style: TextStyle(color: Colors.white),
                         )
                       ],
                     ),
@@ -87,6 +89,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
                   height: 50,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
+                    color: Colors.teal[600],
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Color.fromRGBO(182, 182, 182, 1.0),
@@ -97,11 +100,11 @@ class _OrgDashboardState extends State<OrgDashboard> {
                       children: [
                         Icon(
                           Icons.add,
-                          color: Colors.teal,
+                          color: Colors.white,
                         ),
                         Text(
                           'Create Article',
-                          style: TextStyle(color: Colors.teal),
+                          style: TextStyle(color: Colors.white),
                         )
                       ],
                     ),
@@ -114,8 +117,10 @@ class _OrgDashboardState extends State<OrgDashboard> {
                 ),
               ],
             ),
+            SizedBox(height: 10,),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+              margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
               height: 35,
               color: Colors.deepPurple,
               child: Text(

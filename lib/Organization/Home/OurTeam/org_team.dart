@@ -48,7 +48,7 @@ class _OrgTeamState extends State<OrgTeam> {
         child: Column(
           children: [
             SizedBox(
-              height: 15,
+              height: 12,
             ),
             Container(
               margin: EdgeInsets.all(10),
@@ -56,6 +56,7 @@ class _OrgTeamState extends State<OrgTeam> {
               height: 50,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
+                color: Colors.teal[700],
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: Color.fromRGBO(182, 182, 182, 1.0),
@@ -66,11 +67,11 @@ class _OrgTeamState extends State<OrgTeam> {
                   children: [
                     Icon(
                       Icons.add,
-                      color: Colors.black54,
+                      color: Colors.white,
                     ),
                     Text(
                       'Edit Teams',
-                      style: TextStyle(color: Colors.teal[800]),
+                      style: TextStyle(color: Colors.white),
                     )
                   ],
                 ),
