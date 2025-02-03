@@ -74,9 +74,9 @@ class _PostArticleState extends State<PostArticle> {
             child: ListView(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
                   margin: EdgeInsets.symmetric(vertical: 0),
-                  height: 30,
+                  height: 35,
                   color: Colors.teal[700],
                   child: Text(
                     'Create Article',
@@ -129,14 +129,29 @@ class _PostArticleState extends State<PostArticle> {
                     _buildStyleRadioButton('Upload document'),
                   ],
                 ),
-                Container(
-                  margin: EdgeInsets.all(10),
-                  child: Text(
-                    '3. Upload Cover Image',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 17),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        '3. Upload Cover Image...',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 17),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      GestureDetector(
+                        child: Icon(
+                          Icons.add_a_photo_outlined,
+                          size: 21,
+                          color: Colors.grey[800],
+                        ),
+                        onTap: (){},
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(

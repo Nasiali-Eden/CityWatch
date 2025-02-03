@@ -99,9 +99,8 @@ class _PostIncidentState extends State<PostIncident> {
                     CrossAxisAlignment.stretch, // Stretch to full width
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    margin: EdgeInsets.symmetric(vertical: 1),
-                    height: 30,
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+                    height: 35,
                     color: Colors.teal[700],
                     child: Text(
                       'New Report',
