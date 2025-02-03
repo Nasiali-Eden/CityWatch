@@ -57,7 +57,7 @@ class _PostArticleState extends State<PostArticle> {
                 Colors.transparent, // Make the AppBar background transparent
             elevation: 0, // Remove default shadow
             title: Text(
-              'Report Incident',
+              'New Article',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -68,49 +68,75 @@ class _PostArticleState extends State<PostArticle> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(0.0),
         child: Form(
             key: _formKey,
             child: ListView(
               children: [
-                TextFormField(
-                  controller: _headlineController,
-                  decoration: InputDecoration(
-                    labelText: 'Headline',
-                    labelStyle: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w300),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey.shade100),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black54, width: 0.1),
-                    ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  margin: EdgeInsets.symmetric(vertical: 0),
+                  height: 30,
+                  color: Colors.teal[700],
+                  child: Text(
+                    'Create Article',
+                    style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
                   ),
-                  onChanged: _onHeadlineChanged,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please add the headline';
-                    }
-                    return null;
-                  },
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                  child: TextFormField(
+                    controller: _headlineController,
+                    decoration: InputDecoration(
+                      labelText: '1. Headline',
+                      labelStyle: const TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.w400),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black54),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black87, width: 0.1),
+                      ),
+                    ),
+                    onChanged: _onHeadlineChanged,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please add the headline';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    '2. Input',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 17),
+                  ),
                 ),
                 Wrap(
                   alignment: WrapAlignment.center,
                   spacing: 5,
                   runSpacing: 5,
                   children: [
-                    _buildStyleRadioButton('Use Current Location'),
-                    _buildStyleRadioButton('Use Custom Location'),
+                    _buildStyleRadioButton('Type Text'),
+                    _buildStyleRadioButton('Upload document'),
                   ],
                 ),
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    'Upload Cover Image',
-                    style: TextStyle(color: Colors.teal[600], fontSize: 20),
+                    '3. Upload Cover Image',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 17),
                   ),
                 ),
                 SizedBox(
