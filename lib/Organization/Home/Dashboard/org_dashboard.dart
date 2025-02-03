@@ -51,7 +51,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
             Row(
               children: [
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
                   width: 0.40 * deviceWidth,
                   height: 50,
                   padding: EdgeInsets.all(10),
@@ -113,6 +113,15 @@ class _OrgDashboardState extends State<OrgDashboard> {
                   ),
                 ),
               ],
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+              height: 35,
+              color: Colors.deepPurple,
+              child: Text(
+                'Incident View',
+                style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
+              ),
             ),
           ],
         ),
