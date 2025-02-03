@@ -100,29 +100,29 @@ class _PostIncidentState extends State<PostIncident> {
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                    margin: EdgeInsets.symmetric(vertical: 10),
+                    margin: EdgeInsets.symmetric(vertical: 1),
                     height: 30,
                     color: Colors.teal[700],
                     child: Text(
                       'New Report',
-                      style: TextStyle(color: Colors.white, fontSize: 15),
+                      style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
                     ),
                   ),
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                 child: TextFormField(
                   controller: _headlineController,
                   decoration: InputDecoration(
-                    labelText: 'Input Headline',
+                    labelText: '1. Input Headline',
                     labelStyle: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w300),
+                        color: Colors.black, fontWeight: FontWeight.w400),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey.shade100),
+                      borderSide: BorderSide(color: Colors.black54),
                     ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black54, width: 0.1),
+                      borderSide: BorderSide(color: Colors.black87, width: 0.1),
                     ),
                   ),
                   onChanged: _onHeadlineChanged,
@@ -138,19 +138,19 @@ class _PostIncidentState extends State<PostIncident> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                 child: Text(
-                  'What type of Incident are you reporting?',
+                  '2. What type of Incident are you reporting?',
                   style: TextStyle(
                       color: Colors.black,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w400,
                       fontSize: 17),
                 ),
               ),
               Wrap(
                 alignment: WrapAlignment.center,
-                spacing: 5,
-                runSpacing: 5,
+                spacing: 3,
+                runSpacing: 2,
                 children: [
                   _buildStyleRadioButton('Health'),
                   _buildStyleRadioButton('Fire'),
@@ -158,23 +158,20 @@ class _PostIncidentState extends State<PostIncident> {
                   _buildStyleRadioButton('Wildlife'),
                 ],
               ),
-              SizedBox(
-                height: 7,
-              ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                 child: TextFormField(
                   controller: _descriptionController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    labelText: 'Description of Incident',
+                    labelText: '3. Description of Incident',
                     labelStyle: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w300),
+                        color: Colors.black, fontWeight: FontWeight.w400),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey.shade100),
+                      borderSide: BorderSide(color: Colors.black54),
                     ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black54, width: 0.1),
+                      borderSide: BorderSide(color: Colors.black87, width: 0.1),
                     ),
                   ),
                   onChanged: _onDescriptionChanged,
@@ -192,10 +189,10 @@ class _PostIncidentState extends State<PostIncident> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  'Choose Location',
+                  '4. Choose Location',
                   style: TextStyle(
                       color: Colors.black,
-                      fontWeight: FontWeight.w300,
+                      fontWeight: FontWeight.w400,
                       fontSize: 17),
                 ),
               ),
@@ -213,23 +210,30 @@ class _PostIncidentState extends State<PostIncident> {
               ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Click if you wish to add images',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 17),
+                child: Row(
+                  children: [
+                    Text(
+                      '5. Click if you wish to add images...',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 17),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    GestureDetector(
+                      child: Icon(
+                        Icons.add_a_photo_outlined,
+                        size: 21,
+                        color: Colors.grey[800],
+                      ),
+                      onTap: (){},
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(
-                height: 5,
-              ),
-              Center(
-                  child: Icon(
-                Icons.add_a_photo_outlined,
-                size: 15,
-                color: Colors.grey,
-              )),
+
               SizedBox(
                 height: 35,
               ),
