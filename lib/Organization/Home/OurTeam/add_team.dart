@@ -92,7 +92,7 @@ class _AddTeamState extends State<AddTeam> {
         width: 160,
         height: 50,
         decoration: BoxDecoration(
-          color: Colors.teal[600],
+          color: Colors.cyan[700],
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: const Color.fromRGBO(182, 182, 182, 1.0)),
         ),

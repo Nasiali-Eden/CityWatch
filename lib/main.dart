@@ -1,4 +1,4 @@
-import 'package:citywatch/Home/landing_page.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'Wrappers/main_wrapper.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LandingPage()
+      home: Wrapper(),
     );
   }
 }
