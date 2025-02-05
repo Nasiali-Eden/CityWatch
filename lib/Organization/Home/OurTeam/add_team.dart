@@ -10,23 +10,10 @@ class AddTeam extends StatefulWidget {
 class _AddTeamState extends State<AddTeam> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _teamNameController = TextEditingController();
-  final List<TextEditingController> _teamLeadsControllers = [
-    TextEditingController()
-  ];
-  final List<TextEditingController> _rolesControllers = [
-    TextEditingController()
-  ];
+  final List<TextEditingController> _rolesControllers = [TextEditingController(text: 'Team Lead')];
   final List<Map<String, dynamic>> _teamMembers = [];
 
   bool showForm = false;
-
-  void _addTeamLead() {
-    if (_teamLeadsControllers.last.text.isNotEmpty) {
-      setState(() {
-        _teamLeadsControllers.add(TextEditingController());
-      });
-    }
-  }
 
   void _addRole() {
     if (_rolesControllers.last.text.isNotEmpty) {
@@ -34,6 +21,17 @@ class _AddTeamState extends State<AddTeam> {
         _rolesControllers.add(TextEditingController());
       });
     }
+  }
+
+  void _removeRole(int index) {
+    setState(() {
+      _rolesControllers.removeAt(index);
+      for (var member in _teamMembers) {
+        if (member['role'] == _rolesControllers[index].text) {
+          member['role'] = null;
+        }
+      }
+    });
   }
 
   void _addTeamMember() {
@@ -45,6 +43,12 @@ class _AddTeamState extends State<AddTeam> {
         });
       });
     }
+  }
+
+  void _removeTeamMember(int index) {
+    setState(() {
+      _teamMembers.removeAt(index);
+    });
   }
 
   @override
@@ -114,8 +118,7 @@ class _AddTeamState extends State<AddTeam> {
         children: [
           _buildTextField('Team Name', _teamNameController),
           const SizedBox(height: 15),
-          _buildDynamicFields('Team Lead', _teamLeadsControllers, _addTeamLead),
-          _buildDynamicFields('Roles', _rolesControllers, _addRole),
+          _buildRolesSection(),
           _buildTeamMembersSection(),
           const SizedBox(height: 20),
           Center(
@@ -136,32 +139,45 @@ class _AddTeamState extends State<AddTeam> {
     );
   }
 
-  Widget _buildTextField(String label, TextEditingController controller) {
-    return TextFormField(
-      controller: controller,
-      validator: (value) => value!.isEmpty ? 'This field is required' : null,
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle:
-        const TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
-        enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.black54)),
-        focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.black87, width: 0.1)),
-      ),
+  Widget _buildTextField(String label, TextEditingController controller, {VoidCallback? onRemove}) {
+    return Row(
+      children: [
+        Expanded(
+          child: TextFormField(
+            controller: controller,
+            validator: (value) => value!.isEmpty ? 'This field is required' : null,
+            decoration: InputDecoration(
+              labelText: label,
+              labelStyle:
+              const TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
+              enabledBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black54)),
+              focusedBorder: const UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black87, width: 0.1)),
+            ),
+          ),
+        ),
+        if (onRemove != null)
+          IconButton(
+            icon: const Icon(Icons.close, color: Colors.red),
+            onPressed: onRemove,
+          ),
+      ],
     );
   }
 
-  Widget _buildDynamicFields(String label,
-      List<TextEditingController> controllers, VoidCallback onAdd) {
+  Widget _buildRolesSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (var controller in controllers) _buildTextField(label, controller),
+        const Text('Roles:',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Colors.black)),
+        for (int i = 0; i < _rolesControllers.length; i++)
+          _buildTextField('Role', _rolesControllers[i], onRemove: i == 0 ? null : () => _removeRole(i)),
         TextButton(
-            onPressed: onAdd,
-            child: const Text('+ Add',
-                style: TextStyle(color: Colors.teal, fontSize: 16))),
+          onPressed: _addRole,
+          child: const Text('+ Add Role', style: TextStyle(color: Colors.teal, fontSize: 16)),
+        ),
       ],
     );
   }
@@ -171,37 +187,36 @@ class _AddTeamState extends State<AddTeam> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Add Team Members',
-            style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w400,
-                color: Colors.black)),
-        for (var member in _teamMembers)
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Colors.black)),
+        for (int i = 0; i < _teamMembers.length; i++)
           Row(
             children: [
-              Expanded(child: _buildTextField('Member Name', member['name'])),
-              const SizedBox(width: 10),
+              Expanded(child: _buildTextField('Member Name', _teamMembers[i]['name'])),
               DropdownButton<String>(
                 hint: const Text('Select Role'),
-                value: member['role'],
+                value: _teamMembers[i]['role'],
                 onChanged: (value) {
                   setState(() {
-                    member['role'] = value;
+                    _teamMembers[i]['role'] = value;
                   });
                 },
                 items: _rolesControllers.map((controller) {
                   return DropdownMenuItem<String>(
                     value: controller.text,
-                    child: Text(controller.text,
-                        style: const TextStyle(fontSize: 16)),
+                    child: Text(controller.text),
                   );
                 }).toList(),
+              ),
+              IconButton(
+                icon: const Icon(Icons.close, color: Colors.red),
+                onPressed: () => _removeTeamMember(i),
               ),
             ],
           ),
         TextButton(
-            onPressed: _addTeamMember,
-            child: const Text('+ Add Member',
-                style: TextStyle(color: Colors.teal, fontSize: 16))),
+          onPressed: _addTeamMember,
+          child: const Text('+ Add Member', style: TextStyle(color: Colors.teal, fontSize: 16)),
+        ),
       ],
     );
   }
