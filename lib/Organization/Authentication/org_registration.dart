@@ -20,13 +20,16 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
   final _formKey = GlobalKey<FormState>();
   final AuthService _authService = AuthService();
 
-  final TextEditingController NameController = TextEditingController();
-  final TextEditingController TypeController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController repController = TextEditingController();
+  final TextEditingController typeController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController ContactController = TextEditingController();
-  final TextEditingController LocationController = TextEditingController();
+  final TextEditingController contactController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
 
+
+  String rep = '';
   String email = '';
   String password = '';
   String name = '';
@@ -40,7 +43,11 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
       _type = value;
     });
   }
-
+  void _onRepNameChanged(String value) {
+    setState(() {
+      rep = value;
+    });
+  }
 
   void _onEmailChanged(String value) {
     setState(() {
@@ -100,9 +107,17 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                 MyTextField(
                   validator: (value) => value!.isEmpty ? 'Enter Org Name' : null,
                   obscureText: false,
-                  controller: NameController,
+                  controller: nameController,
                   labelText: 'Organization Name',
                   onChanged: _onNameChanged,
+                ),
+                const SizedBox(height: 10),
+                MyTextField(
+                  validator: (value) => value!.isEmpty ? 'Enter your Name' : null,
+                  obscureText: false,
+                  controller: repController,
+                  labelText: 'Organization Representative Name',
+                  onChanged: _onRepNameChanged,
                 ),
                 const SizedBox(height: 10),
                 Padding(
@@ -197,18 +212,18 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                 const SizedBox(height: 10),
 
                 MyTextField(
-                  validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
+                  validator: (value) => value!.isEmpty ? 'Enter Contact Details' : null,
                   obscureText: false,
-                  controller: ContactController,
+                  controller: contactController,
                   labelText: 'Contact',
                   onChanged: _onContactChanged,
                 ),
                 const SizedBox(height: 10),
 
                 MyTextField(
-                  validator: (value) => value!.isEmpty ? 'Enter Last Name' : null,
+                  validator: (value) => value!.isEmpty ? 'Enter Your Office Location details' : null,
                   obscureText: false,
-                  controller: LocationController,
+                  controller: locationController,
                   labelText: 'Location',
                   onChanged: _onLocationChanged,
                 ),
@@ -264,10 +279,10 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                           passwordController.text,
                           'Organization',
                           {
-                            'Name': NameController.text,
-                            'Location': LocationController.text,
-                            'Type': TypeController.text,
-                            'Contact': ContactController.text,
+                            'Name': nameController.text,
+                            'Location': locationController.text,
+                            'Type': typeController.text,
+                            'Contact': contactController.text,
                           },
                         ).then((result) {
                           if (result != null) {
