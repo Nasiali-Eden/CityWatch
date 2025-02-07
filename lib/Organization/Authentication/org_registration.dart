@@ -27,8 +27,9 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController contactController = TextEditingController();
   final TextEditingController locationController = TextEditingController();
+  final TextEditingController positionController = TextEditingController();
 
-
+  String position = '';
   String rep = '';
   String email = '';
   String password = '';
@@ -58,6 +59,12 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
     });
   }
 
+
+  void _onPositionChanged(String value) {
+    setState(() {
+      position = value;
+    });
+  }
   void _onEmailChanged(String value) {
     setState(() {
       email = value;
@@ -189,6 +196,14 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                   controller: repController,
                   labelText: 'Organization Representative Name',
                   onChanged: _onRepNameChanged,
+                ),
+                const SizedBox(height: 10),
+                MyTextField(
+                  validator: (value) => value!.isEmpty ? 'Enter your Position' : null,
+                  obscureText: false,
+                  controller: positionController,
+                  labelText: 'Your Position',
+                  onChanged: _onPositionChanged,
                 ),
                 const SizedBox(height: 10),
                 Padding(
