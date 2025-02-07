@@ -23,9 +23,6 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController repController = TextEditingController();
-  final TextEditingController typeController = TextEditingController();
-  final TextEditingController designationController = TextEditingController();
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController contactController = TextEditingController();
@@ -355,9 +352,9 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                           {
                             'Name': nameController.text,
                             'OrgRep': repController.text,
-                            'Designation': designationController.text,
+                            'Designation': _designation,
                             'Location': locationController.text,
-                            'Type': typeController.text,
+                            'Type': _type,
                             'Contact': contactController.text,
                           },
                         ).then((result) {
