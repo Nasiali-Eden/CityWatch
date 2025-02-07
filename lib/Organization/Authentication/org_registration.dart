@@ -15,6 +15,7 @@ class OrganizationRegistration extends StatefulWidget {
 }
 
 enum type { Health, Police, Fire, Floods, Wildlife,}
+enum designation {NGO, Government, Private}
 
 class _OrganizationRegistrationState extends State<OrganizationRegistration> {
   final _formKey = GlobalKey<FormState>();
@@ -23,6 +24,8 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController repController = TextEditingController();
   final TextEditingController typeController = TextEditingController();
+  final TextEditingController designationController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController contactController = TextEditingController();
@@ -43,6 +46,15 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
       _type = value;
     });
   }
+
+
+  designation? _designation = designation.NGO;
+  void _onDesignationChanged(designation? value) {
+    setState(() {
+      _designation = value;
+    });
+  }
+
   void _onRepNameChanged(String value) {
     setState(() {
       rep = value;
@@ -112,6 +124,68 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                   onChanged: _onNameChanged,
                 ),
                 const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 13),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Designation',
+                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.deepPurpleAccent),
+                      ),
+                      const SizedBox(height: 8), // Add spacing between text and buttons
+                      Wrap(
+                        spacing: 7, // Space between radio buttons
+                        runSpacing: 0, // Space between lines if wrapped
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<designation>(
+                                groupValue: _designation,
+                                value: designation.NGO,
+                                onChanged: (designation? value) {
+                                  _onDesignationChanged(value);
+                                },
+                                activeColor: Colors.deepPurple,
+                              ),
+                              const Text('NGO|NPO'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<designation>(
+                                groupValue: _designation,
+                                value: designation.Government,
+                                onChanged: (designation? value) {
+                                  _onDesignationChanged(value);
+                                },
+                                activeColor: Colors.deepPurple,
+                              ),
+                              const Text('Government agency'),
+                            ],
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Radio<designation>(
+                                groupValue: _designation,
+                                value: designation.Private,
+                                onChanged: (designation? value) {
+                                  _onDesignationChanged(value);
+                                },
+                                activeColor: Colors.deepPurple,
+                              ),
+                              const Text('Private'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+
                 MyTextField(
                   validator: (value) => value!.isEmpty ? 'Enter your Name' : null,
                   obscureText: false,
@@ -280,6 +354,8 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                           'Organization',
                           {
                             'Name': nameController.text,
+                            'OrgRep': repController.text,
+                            'Designation': designationController.text,
                             'Location': locationController.text,
                             'Type': typeController.text,
                             'Contact': contactController.text,
