@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                     "Login",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple,
+                      color: Colors.deepPurpleAccent,
                       fontSize: 40,
                     ),
                   ),
@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                     margin: const EdgeInsets.symmetric(horizontal: 110),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple,
+                        backgroundColor: Colors.deepPurpleAccent,
                         padding: const EdgeInsets.all(15),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
@@ -189,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                     maintainState: true,
                     visible: visible,
                     child: CircularProgressIndicator(
-                      color: Colors.deepPurple,
+                      color: Colors.deepPurpleAccent,
                     ),
                   ),
                   const SizedBox(height: 10),

@@ -83,7 +83,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               ),
             ),
             Divider(
-              color: Colors.deepPurple, // Line color
+              color: Colors.deepPurpleAccent, // Line color
               thickness: 3.0, // Line thickness
               height: 15.0, // Space above and below the line
             ),
@@ -91,7 +91,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               margin: EdgeInsets.all(10),
               child: Text(
                 'Top Updates',
-                style: TextStyle(color: Colors.deepPurple, fontSize: 20),
+                style: TextStyle(color: Colors.deepPurpleAccent, fontSize: 20),
               ),
             ),
 

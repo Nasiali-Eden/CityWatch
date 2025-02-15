@@ -160,7 +160,7 @@ class _PostArticleState extends State<PostArticle> {
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
+                      backgroundColor: Colors.deepPurpleAccent,
                       padding: const EdgeInsets.all(15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
@@ -189,7 +189,7 @@ class _PostArticleState extends State<PostArticle> {
           style: TextStyle(
             color: _selectedTypes.contains(type)
                 ? Colors.white
-                : Colors.deepPurple,
+                : Colors.deepPurpleAccent,
           ),
         ),
         selected: _selectedTypes.contains(type),
@@ -197,11 +197,11 @@ class _PostArticleState extends State<PostArticle> {
           _toggleType(type);
         },
         backgroundColor: Colors.white, // Background color when not selected
-        selectedColor: Colors.deepPurple, // Background color when selected
+        selectedColor: Colors.deepPurpleAccent, // Background color when selected
         side: _selectedTypes.contains(type)
             ? BorderSide.none // No border when selected
             : BorderSide(
-                color: Colors.deepPurple, // Border color when not selected
+                color: Colors.deepPurpleAccent, // Border color when not selected
               ),
       ),
     );

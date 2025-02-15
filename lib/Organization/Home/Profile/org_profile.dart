@@ -63,7 +63,7 @@ class _OrgProfileState extends State<OrgProfile> {
                       child: Text(
                         'Account Management',
                         style: TextStyle(
-                            color: Colors.deepPurple, fontWeight: FontWeight.w500),
+                            color: Colors.deepPurpleAccent, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Expanded(
@@ -179,7 +179,7 @@ class _OrgProfileState extends State<OrgProfile> {
                       child: Text(
                         'Notifications',
                         style: TextStyle(
-                            color: Colors.deepPurple, fontWeight: FontWeight.w500),
+                            color: Colors.deepPurpleAccent, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Expanded(
@@ -291,7 +291,7 @@ class _OrgProfileState extends State<OrgProfile> {
                       child: Text(
                         'About City Watch',
                         style: TextStyle(
-                            color:Colors.deepPurple, fontWeight: FontWeight.w500),
+                            color:Colors.deepPurpleAccent, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Expanded(

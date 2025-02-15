@@ -18,7 +18,7 @@ class _UserProfileState extends State<UserProfile> {
         preferredSize: Size.fromHeight(56.0), // Set the height of the AppBar
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.deepPurple,
+            color: Colors.deepPurpleAccent,
             boxShadow: [
               BoxShadow(
                 color: Colors.white.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
@@ -62,7 +62,7 @@ class _UserProfileState extends State<UserProfile> {
                       child: Text(
                         'Account Management',
                         style: TextStyle(
-                            color: Colors.deepPurple, fontWeight: FontWeight.w500),
+                            color: Colors.deepPurpleAccent, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Expanded(
@@ -178,7 +178,7 @@ class _UserProfileState extends State<UserProfile> {
                       child: Text(
                         'Notifications',
                         style: TextStyle(
-                            color: Colors.deepPurple, fontWeight: FontWeight.w500),
+                            color: Colors.deepPurpleAccent, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Expanded(
@@ -290,7 +290,7 @@ class _UserProfileState extends State<UserProfile> {
                       child: Text(
                         'About City Watch',
                         style: TextStyle(
-                            color:Colors.deepPurple, fontWeight: FontWeight.w500),
+                            color:Colors.deepPurpleAccent, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Expanded(

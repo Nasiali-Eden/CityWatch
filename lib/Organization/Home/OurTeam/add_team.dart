@@ -125,7 +125,7 @@ class _AddTeamState extends State<AddTeam> {
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepPurple,
+                backgroundColor: Colors.deepPurpleAccent,
                 padding: const EdgeInsets.all(15),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),

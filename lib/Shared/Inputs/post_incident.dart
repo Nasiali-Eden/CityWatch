@@ -240,7 +240,7 @@ class _PostIncidentState extends State<PostIncident> {
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: Colors.deepPurpleAccent,
                     padding: const EdgeInsets.all(15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
@@ -270,7 +270,7 @@ class _PostIncidentState extends State<PostIncident> {
           style: TextStyle(
             color: _selectedTypes.contains(type)
                 ? Colors.white
-                : Colors.deepPurple,
+                : Colors.deepPurpleAccent,
           ),
         ),
         selected: _selectedTypes.contains(type),
@@ -278,11 +278,11 @@ class _PostIncidentState extends State<PostIncident> {
           _toggleType(type);
         },
         backgroundColor: Colors.white, // Background color when not selected
-        selectedColor: Colors.deepPurple, // Background color when selected
+        selectedColor: Colors.deepPurpleAccent, // Background color when selected
         side: _selectedTypes.contains(type)
             ? BorderSide.none // No border when selected
             : BorderSide(
-                color: Colors.deepPurple, // Border color when not selected
+                color: Colors.deepPurpleAccent, // Border color when not selected
               ),
       ),
     );
@@ -298,7 +298,7 @@ class _PostIncidentState extends State<PostIncident> {
           style: TextStyle(
             color: _selectedTypes.contains(location)
                 ? Colors.white
-                : Colors.deepPurple,
+                : Colors.deepPurpleAccent,
           ),
         ),
         selected: _selectedTypes.contains(location),
@@ -307,12 +307,12 @@ class _PostIncidentState extends State<PostIncident> {
         },
         backgroundColor: Colors.white,
         // Background color when not selected
-        selectedColor: Colors.deepPurple,
+        selectedColor: Colors.deepPurpleAccent,
         // Background color when selected
         side: _selectedTypes.contains(location)
             ? BorderSide.none // No border when selected
             : BorderSide(
-          color: Colors.deepPurple, // Border color when not selected
+          color: Colors.deepPurpleAccent, // Border color when not selected
         ),
       ),
     );

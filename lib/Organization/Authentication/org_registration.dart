@@ -114,7 +114,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                     "Sign Up",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple,
+                      color: Colors.deepPurpleAccent,
                       fontSize: 40,
                     ),
                   ),
@@ -151,7 +151,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                                 onChanged: (designation? value) {
                                   _onDesignationChanged(value);
                                 },
-                                activeColor: Colors.deepPurple,
+                                activeColor: Colors.deepPurpleAccent,
                               ),
                               const Text('NGO|NPO'),
                             ],
@@ -165,7 +165,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                                 onChanged: (designation? value) {
                                   _onDesignationChanged(value);
                                 },
-                                activeColor: Colors.deepPurple,
+                                activeColor: Colors.deepPurpleAccent,
                               ),
                               const Text('Government agency'),
                             ],
@@ -179,7 +179,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                                 onChanged: (designation? value) {
                                   _onDesignationChanged(value);
                                 },
-                                activeColor: Colors.deepPurple,
+                                activeColor: Colors.deepPurpleAccent,
                               ),
                               const Text('Private'),
                             ],
@@ -229,7 +229,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                                 onChanged: (type? value) {
                                   _onTypeChanged(value);
                                 },
-                                activeColor: Colors.deepPurple,
+                                activeColor: Colors.deepPurpleAccent,
                               ),
                               const Text('Health'),
                             ],
@@ -243,7 +243,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                                 onChanged: (type? value) {
                                   _onTypeChanged(value);
                                 },
-                                activeColor: Colors.deepPurple,
+                                activeColor: Colors.deepPurpleAccent,
                               ),
                               const Text('Floods'),
                             ],
@@ -257,7 +257,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                                 onChanged: (type? value) {
                                   _onTypeChanged(value);
                                 },
-                                activeColor: Colors.deepPurple,
+                                activeColor: Colors.deepPurpleAccent,
                               ),
                               const Text('Police'),
                             ],

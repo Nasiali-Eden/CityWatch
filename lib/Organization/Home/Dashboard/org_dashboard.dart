@@ -122,7 +122,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
               margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
               height: 35,
-              color: Colors.deepPurple,
+              color: Colors.deepPurpleAccent,
               child: Text(
                 'Incident View',
                 style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
