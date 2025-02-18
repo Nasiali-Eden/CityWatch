@@ -63,11 +63,10 @@ class _PostIncidentState extends State<PostIncident> {
             const Size.fromHeight(56.0), // Set the height of the AppBar
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.deepPurple[700],
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.white.withAlpha(
-                    (0.05 * 255).toInt()), // Shadow color with opacity
+                color: Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
                 blurRadius: 4.0, // Adjust the blur radius
                 offset: Offset(0, 3), // Position of the shadow
               ),
@@ -80,7 +79,7 @@ class _PostIncidentState extends State<PostIncident> {
             title: Text(
               'Report Incident',
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.deepPurpleAccent,
                 fontWeight: FontWeight.w500,
                 fontSize: 22,
               ),
@@ -98,6 +97,7 @@ class _PostIncidentState extends State<PostIncident> {
                 crossAxisAlignment:
                     CrossAxisAlignment.stretch, // Stretch to full width
                 children: [
+                  SizedBox(height: 20),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
                     margin: EdgeInsets.symmetric(vertical: 0),
@@ -235,7 +235,7 @@ class _PostIncidentState extends State<PostIncident> {
               ),
 
               SizedBox(
-                height: 35,
+                height: 25,
               ),
               Center(
                 child: ElevatedButton(
