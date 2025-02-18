@@ -24,7 +24,8 @@ class _OrgDashboardState extends State<OrgDashboard> {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
+                color: Colors.deepPurpleAccent.withAlpha(
+                    (0.05 * 255).toInt()), // Shadow color with opacity
                 blurRadius: 4.0, // Adjust the blur radius
                 offset: Offset(0, 3), // Position of the shadow
               ),
@@ -32,7 +33,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
           ),
           child: AppBar(
             backgroundColor:
-            Colors.transparent, // Make the AppBar background transparent
+                Colors.transparent, // Make the AppBar background transparent
             elevation: 0, // Remove default shadow
             title: Text(
               'Dashboard',
@@ -45,10 +46,13 @@ class _OrgDashboardState extends State<OrgDashboard> {
           ),
         ),
       ),
-      body: Padding(padding: EdgeInsets.all(0.0),
+      body: Padding(
+        padding: EdgeInsets.all(0.0),
         child: ListView(
           children: [
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Row(
               children: [
                 Container(
@@ -57,7 +61,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
                   height: 50,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.teal[600],
+                      color: Colors.teal[600],
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Color.fromRGBO(182, 182, 182, 1.0),
@@ -76,9 +80,10 @@ class _OrgDashboardState extends State<OrgDashboard> {
                         )
                       ],
                     ),
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => PostIncident()),
+                        context,
+                        MaterialPageRoute(builder: (context) => PostIncident()),
                       );
                     },
                   ),
@@ -89,7 +94,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
                   height: 50,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Colors.teal[600],
+                      color: Colors.teal[600],
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Color.fromRGBO(182, 182, 182, 1.0),
@@ -108,24 +113,30 @@ class _OrgDashboardState extends State<OrgDashboard> {
                         )
                       ],
                     ),
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
-                        context, MaterialPageRoute(builder: (context) => PostArticle()),
+                        context,
+                        MaterialPageRoute(builder: (context) => PostArticle()),
                       );
                     },
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
               margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
-              height: 35,
-              color: Colors.deepPurpleAccent,
+              height: 31,
+              color: Colors.deepPurple,
               child: Text(
-                'Incident View',
-                style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
+                'Reports Summary',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800),
               ),
             ),
           ],
