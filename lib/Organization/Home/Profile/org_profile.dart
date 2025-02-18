@@ -19,10 +19,10 @@ class _OrgProfileState extends State<OrgProfile> {
         preferredSize: Size.fromHeight(56.0), // Set the height of the AppBar
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.deepPurple[700],
+            color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.white.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
+                color: Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
                 blurRadius: 4.0, // Adjust the blur radius
                 offset: Offset(0, 3), // Position of the shadow
               ),
@@ -35,7 +35,7 @@ class _OrgProfileState extends State<OrgProfile> {
             title: Text(
               'Profile',
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.deepPurpleAccent,
                 fontWeight: FontWeight.w500,
                 fontSize: 22,
               ),
