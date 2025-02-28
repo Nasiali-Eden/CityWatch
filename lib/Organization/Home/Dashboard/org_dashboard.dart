@@ -61,7 +61,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
                   height: 50,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Colors.teal[600],
+                      color: Colors.green[700],
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Color.fromRGBO(182, 182, 182, 1.0),
@@ -94,7 +94,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
                   height: 50,
                   padding: EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                      color: Colors.teal[600],
+                      color: Colors.green[700],
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: Color.fromRGBO(182, 182, 182, 1.0),
@@ -130,7 +130,7 @@ class _OrgDashboardState extends State<OrgDashboard> {
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
               margin: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
               height: 31,
-              color: Colors.deepPurple,
+              color: Colors.deepPurpleAccent[200],
               child: Text(
                 'Reports Summary',
                 style: TextStyle(
