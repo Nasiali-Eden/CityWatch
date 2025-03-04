@@ -28,7 +28,7 @@ class _UserHelpState extends State<UserHelp> {
           ),
           child: AppBar(
             backgroundColor:
-            Colors.transparent, // Make the AppBar background transparent
+                Colors.transparent, // Make the AppBar background transparent
             elevation: 0, // Remove default shadow
             title: Text(
               'Help and Resources',
@@ -41,8 +41,49 @@ class _UserHelpState extends State<UserHelp> {
           ),
         ),
       ),
-      body: Center(
-        child: Text('Help'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("HelpLines",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            _buildButton(context, "Police Services"),
+            _buildButton(context, "Ambulance Services"),
+            _buildButton(context, "Kenya Red Cross"),
+            SizedBox(height: 16),
+            Text("Nearby Resources",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            SizedBox(height: 8),
+            _buildButton(context, "Refugee Camps"),
+            _buildButton(context, "Government Shelters"),
+            _buildButton(context, "Free Medical Services"),
+            _buildButton(context, "Relief Aid"),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButton(BuildContext context, String text) {
+    return GestureDetector(
+      onTap: () {
+        // Add action here
+        print("$text tapped");
+      },
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(vertical: 12),
+        margin: EdgeInsets.only(bottom: 8),
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Center(
+          child: Text(text,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+        ),
       ),
     );
   }
