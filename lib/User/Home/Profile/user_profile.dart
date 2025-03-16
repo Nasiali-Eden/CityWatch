@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../Services/Authentication/auth.dart';
+import '../../../Shared/Pages/login.dart';
+
 class UserProfile extends StatefulWidget {
   const UserProfile({super.key});
 
@@ -8,6 +11,7 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+  final AuthService _authService = AuthService();
   Color maroon = Color(0xFFD52020);
 
   @override
@@ -449,47 +453,38 @@ class _UserProfileState extends State<UserProfile> {
                   ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 8), // Adjust padding
-                margin:
-                const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[50],
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      child: Text(
-                        'Switch Account',
-                        style: TextStyle(color: maroon)
-                      ),
-                    ),
-                  ],
-                ),
-              ),
 
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 8), // Adjust padding
-                margin:
-                const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[50],
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      child: Text(
-                        'Sign Out',
-                        style: TextStyle(color: maroon),
+
+              GestureDetector(
+                onTap: () async {
+                  await _authService.signOut();
+                  if (!mounted) return; // Prevents calling setState after dispose
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
+
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 8), // Adjust padding
+                  margin:
+                  const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.grey[50],
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        child: Text(
+                          'Sign Out',
+                          style: TextStyle(color: maroon),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(

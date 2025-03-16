@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "850315907603",
-    "project_id": "citywatch-acef0",
-    "storage_bucket": "citywatch-acef0.firebasestorage.app"
+    "project_number": "147547439386",
+    "project_id": "citywatch-3ac52",
+    "storage_bucket": "citywatch-3ac52.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:850315907603:android:a051c0c8313701fbc0a5e6",
+        "mobilesdk_app_id": "1:147547439386:android:3ed92b5b96998293cb2ca3",
         "android_client_info": {
           "package_name": "com.example.citywatch"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBpqTDVkPd3AcZFoblpM2lGCXJsgXvNTrw"
+          "current_key": "AIzaSyDyCwcbp4PZPpoSswqnSbpEJcwOC0XwxMs"
         }
       ],
       "services": {

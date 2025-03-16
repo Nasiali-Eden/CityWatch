@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBpqTDVkPd3AcZFoblpM2lGCXJsgXvNTrw',
-    appId: '1:850315907603:android:a051c0c8313701fbc0a5e6',
-    messagingSenderId: '850315907603',
-    projectId: 'citywatch-acef0',
-    storageBucket: 'citywatch-acef0.firebasestorage.app',
+    apiKey: 'AIzaSyDyCwcbp4PZPpoSswqnSbpEJcwOC0XwxMs',
+    appId: '1:147547439386:android:3ed92b5b96998293cb2ca3',
+    messagingSenderId: '147547439386',
+    projectId: 'citywatch-3ac52',
+    storageBucket: 'citywatch-3ac52.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAd8Mgw-tpsLqXQEQSUPxOjsveoY9IQ020',
-    appId: '1:850315907603:ios:886e40cafbe27052c0a5e6',
-    messagingSenderId: '850315907603',
-    projectId: 'citywatch-acef0',
-    storageBucket: 'citywatch-acef0.firebasestorage.app',
+    apiKey: 'AIzaSyC8W-ABB2T-D3Gn9zfZ5GTNyV_pNdiRG2o',
+    appId: '1:147547439386:ios:64bb895cc557cfbbcb2ca3',
+    messagingSenderId: '147547439386',
+    projectId: 'citywatch-3ac52',
+    storageBucket: 'citywatch-3ac52.firebasestorage.app',
     iosBundleId: 'com.example.citywatch',
   );
+
 }

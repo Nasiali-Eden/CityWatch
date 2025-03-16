@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../Services/Authentication/auth.dart';
+import '../../../Shared/Pages/login.dart';
+
 class OrgProfile extends StatefulWidget {
   const OrgProfile({super.key});
 
@@ -8,6 +11,7 @@ class OrgProfile extends StatefulWidget {
 }
 
 class _OrgProfileState extends State<OrgProfile> {
+  final AuthService _authService = AuthService();
 
   Color maroon = Color(0xFFD52020);
 
@@ -471,25 +475,36 @@ class _OrgProfileState extends State<OrgProfile> {
                 ),
               ),
 
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 8), // Adjust padding
-                margin:
-                const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[50],
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      child: Text(
-                        'Sign Out',
-                        style: TextStyle(color: maroon),
+              GestureDetector(
+                onTap: () async {
+                  await _authService.signOut();
+                  if (!mounted) return; // Prevents calling setState after dispose
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
+
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 8), // Adjust padding
+                  margin:
+                  const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Colors.grey[50],
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                        child: Text(
+                          'Sign Out',
+                          style: TextStyle(color: maroon),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
