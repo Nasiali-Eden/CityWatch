@@ -39,6 +39,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
 
 
   type? _type = type.Police;
+
   void _onTypeChanged(type? value) {
     setState(() {
       _type = value;
@@ -47,6 +48,7 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
 
 
   designation? _designation = designation.NGO;
+
   void _onDesignationChanged(designation? value) {
     setState(() {
       _designation = value;
@@ -366,10 +368,11 @@ class _OrganizationRegistrationState extends State<OrganizationRegistration> {
                           'Organization',
                           {
                             'Name': nameController.text,
-                            'OrgRep': repController.text,
-                            'Designation': _designation,
+                            'OrgRepName': repController.text,
+                            'OrgRepPosition': positionController.text,
+                            'Designation': _designation.toString().split('.').last, // Store as string
                             'Location': locationController.text,
-                            'Type': _type,
+                            'Type': _type.toString().split('.').last, // Store as string
                             'Contact': contactController.text,
                           },
                         ).then((result) {

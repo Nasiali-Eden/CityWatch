@@ -12,23 +12,29 @@ public class MainActivity extends FlutterActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Initialize Firebase first
+        FirebaseApp.initializeApp(this);
+
         boolean isDebuggable = (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
 
         if (isDebuggable) { // Check if app is in debug mode
-            FirebaseApp firebaseApp = FirebaseApp.getInstance(); // Get Firebase instance
+            try {
+                FirebaseApp firebaseApp = FirebaseApp.getInstance(); // Get Firebase instance
 
-            SharedPreferences prefs = getSharedPreferences(
-                    "com.google.firebase.appcheck.debug.store." + firebaseApp.getPersistenceKey(),
-                    Context.MODE_PRIVATE
-            );
+                SharedPreferences prefs = getSharedPreferences(
+                        "com.google.firebase.appcheck.debug.store." + firebaseApp.getPersistenceKey(),
+                        Context.MODE_PRIVATE
+                );
 
-            prefs.edit()
-                    .putString(
-                            "com.google.firebase.appcheck.debug.DEBUG_SECRET",
-                            "31F991C6-0702-44C0-AF76-1ACFEDB6E1C8"
-                    )
-                    .apply();
+                prefs.edit()
+                        .putString(
+                                "com.google.firebase.appcheck.debug.DEBUG_SECRET",
+                                "31F991C6-0702-44C0-AF76-1ACFEDB6E1C8"
+                        )
+                        .apply();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
-

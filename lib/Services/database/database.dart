@@ -16,6 +16,9 @@ class DatabaseService {
       userData['gender'] = additionalData['gender'];
     } else if (role == 'Organization') {
       userData['Name'] = additionalData['Name'];
+      userData['OrgRepName'] = additionalData['OrgRepName'];
+      userData['OrgRepPosition'] = additionalData['OrgRepPosition'];
+      userData['Designation'] = additionalData['Designation'];
       userData['Location'] = additionalData['Location'];
       userData['Type'] = additionalData['Type'];
       userData['Contact'] = additionalData['Contact'];
