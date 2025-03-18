@@ -1,7 +1,7 @@
-import 'package:citywatch/User/Home/Help/user_help.dart';
-import 'package:citywatch/User/Home/HomeScreen/user_homescreen.dart';
-import 'package:citywatch/User/Home/Profile/user_profile.dart';
-import 'package:citywatch/User/Home/Reports/user_reports.dart';
+import 'package:city_watch/User/Home/Help/user_help.dart';
+import 'package:city_watch/User/Home/HomeScreen/user_homescreen.dart';
+import 'package:city_watch/User/Home/Profile/user_profile.dart';
+import 'package:city_watch/User/Home/Reports/user_reports.dart';
 import 'package:flutter/material.dart';
 
 

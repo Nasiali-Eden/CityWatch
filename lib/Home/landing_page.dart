@@ -1,5 +1,5 @@
-import 'package:citywatch/Organization/Authentication/org_registration.dart';
-import 'package:citywatch/User/Authentication/user_registration.dart';
+import 'package:city_watch/Organization/Authentication/org_registration.dart';
+import 'package:city_watch/User/Authentication/user_registration.dart';
 import 'package:flutter/material.dart';
 import '../Reusables/footer/logo.dart';
 import '../Shared/Pages/login.dart';

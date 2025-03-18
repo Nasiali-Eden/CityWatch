@@ -1,14 +1,10 @@
-
 plugins {
-
     id ("com.android.application") version "8.7.0" apply false
     id ("org.jetbrains.kotlin.android") version "2.0.20" apply false
-    // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
-    alias(libs.plugins.jvm)
 
-    // Apply the application plugin to add support for building a CLI application in Java.
     application
 }
+
 
 repositories {
     google()
@@ -17,13 +13,7 @@ repositories {
 }
 
 dependencies {
-    // Use the Kotlin JUnit 5 integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    // Use the JUnit 5 integration.
-    testImplementation(libs.junit.jupiter.engine)
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
+    // Use JUnit test framework.
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 
     testImplementation("junit:junit:4.13.2")
@@ -41,24 +31,17 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-appcheck-playintegrity")
     implementation ("com.google.firebase:firebase-appcheck-debug")
-    implementation("com.google.firebase:firebase-common-ktx")
-    // This dependency is used by the application.
-    implementation(libs.guava)
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.AppKt"
-}
-
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
-    useJUnitPlatform()
+    mainClass.set("org.example.App")
 }

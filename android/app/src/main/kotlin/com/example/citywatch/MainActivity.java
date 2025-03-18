@@ -1,4 +1,4 @@
-package com.example.yourapp;
+package com.example.citywatch;
 
 import io.flutter.embedding.android.FlutterActivity;
 

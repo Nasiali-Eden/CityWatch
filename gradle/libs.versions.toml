@@ -3,13 +3,8 @@
 
 [versions]
 guava = "33.0.0-jre"
-junit-jupiter-engine = "5.10.2"
-firebase-common-ktx = "21.0.0"
+junit = "4.13.2"
 
 [libraries]
 guava = { module = "com.google.guava:guava", version.ref = "guava" }
-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
-firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebase-common-ktx" }
-
-[plugins]
-jvm = { id = "org.jetbrains.kotlin.jvm", version = "1.9.22" }
+junit = { module = "junit:junit", version.ref = "junit" }

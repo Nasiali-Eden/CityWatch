@@ -1,4 +1,4 @@
-# citywatch
+# city_watch
 
 A new Flutter project.
 

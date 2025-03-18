@@ -1,6 +1,8 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
-        android:label="citywatch"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.city_watch">
+
+<application
+        android:label="CityWatch"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

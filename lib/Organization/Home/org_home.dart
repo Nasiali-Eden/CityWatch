@@ -1,8 +1,8 @@
-import 'package:citywatch/Organization/Home/Dashboard/org_dashboard.dart';
-import 'package:citywatch/Organization/Home/Incidents/org_incidents.dart';
-import 'package:citywatch/Organization/Home/OurTeam/org_team.dart';
-import 'package:citywatch/Organization/Home/Profile/org_profile.dart';
-import 'package:citywatch/Organization/Home/Volunteers/org_volunteers.dart';
+import 'package:city_watch/Organization/Home/Dashboard/org_dashboard.dart';
+import 'package:city_watch/Organization/Home/Incidents/org_incidents.dart';
+import 'package:city_watch/Organization/Home/OurTeam/org_team.dart';
+import 'package:city_watch/Organization/Home/Profile/org_profile.dart';
+import 'package:city_watch/Organization/Home/Volunteers/org_volunteers.dart';
 import 'package:flutter/material.dart';
 
 class OrganizationHome extends StatefulWidget {

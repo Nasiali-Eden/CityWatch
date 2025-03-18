@@ -1,4 +1,4 @@
-import 'package:citywatch/Organization/Home/org_home.dart';
+import 'package:city_watch/Organization/Home/org_home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
