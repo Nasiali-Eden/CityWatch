@@ -52,13 +52,12 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               height: 15,
             ),
             Container(
-
               margin: EdgeInsets.all(10),
               width: 0.90 * deviceWidth,
               height: 50,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.teal,
+                color: Colors.deepPurpleAccent,
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     color: Color.fromRGBO(182, 182, 182, 1.0),
@@ -85,7 +84,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               ),
             ),
             Divider(
-              color: Colors.deepPurple, // Line color
+              color: Colors.teal, // Line color
               thickness: 3.0, // Line thickness
               height: 15.0, // Space above and below the line
             ),
@@ -93,7 +92,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               margin: EdgeInsets.all(10),
               child: Text(
                 'Top Updates',
-                style: TextStyle(color: Colors.deepPurple, fontSize: 20),
+                style: TextStyle(color: Colors.teal, fontSize: 20, fontWeight: FontWeight.w400),
               ),
             ),
 

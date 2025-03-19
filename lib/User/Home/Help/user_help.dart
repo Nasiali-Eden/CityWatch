@@ -41,32 +41,36 @@ class _UserHelpState extends State<UserHelp> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("HelpLines",
-                style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black)),
-            SizedBox(height: 18,),
-            _buildButton(context, "Police Services"),
-            _buildButton(context, "Ambulance Services"),
-            _buildButton(context, "Kenya Red Cross"),
-            SizedBox(height: 16),
-            Text("Nearby Resources",
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black)),
-            SizedBox(height: 18),
-            _buildButton(context, "Refugee Camps"),
-            _buildButton(context, "Government Shelters"),
-            _buildButton(context, "Free Medical Services"),
-            _buildButton(context, "Relief Aid"),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("HelpLines",
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black)),
+              SizedBox(height: 18,),
+              _buildButton(context, "Police Services"),
+              _buildButton(context, "Ambulance Services"),
+              _buildButton(context, "Firefighters"),
+              _buildButton(context, "Hospitals"),
+              _buildButton(context, "Kenya Red Cross"),
+              SizedBox(height: 16),
+              Text("Nearby Resources",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black)),
+              SizedBox(height: 18),
+              _buildButton(context, "Refugee Camps"),
+              _buildButton(context, "Government Shelters"),
+              _buildButton(context, "Free Medical Services"),
+              _buildButton(context, "Relief Aid"),
+            ],
+          ),
         ),
       ),
     );
