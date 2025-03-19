@@ -1,8 +1,8 @@
 import 'package:city_watch/Organization/Home/Dashboard/org_dashboard.dart';
-import 'package:city_watch/Organization/Home/Incidents/org_incidents.dart';
 import 'package:city_watch/Organization/Home/OurTeam/org_team.dart';
 import 'package:city_watch/Organization/Home/Profile/org_profile.dart';
 import 'package:city_watch/Organization/Home/Volunteers/org_volunteers.dart';
+import 'package:city_watch/User/Home/Reports/user_reports.dart';
 import 'package:flutter/material.dart';
 
 class OrganizationHome extends StatefulWidget {
@@ -17,7 +17,7 @@ class _OrganizationHomeState extends State<OrganizationHome> {
 
   final List<Widget> pages = [
     const OrgDashboard(),
-    const OrgIncidents(),
+    const UserReports(),
     const OrgTeam(),
     const OrgVolunteers(),
     const OrgProfile()
