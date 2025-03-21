@@ -12,6 +12,7 @@ class UserHelp extends StatefulWidget {
 class _UserHelpState extends State<UserHelp> {
   @override
   Widget build(BuildContext context) {
+
     // This Navigator is "nested" inside the Help tab.
     return Navigator(
       initialRoute: '/',
