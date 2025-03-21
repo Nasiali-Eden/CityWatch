@@ -41,6 +41,9 @@ class _VolunteerRegState extends State<VolunteerReg> {
           ),
         ),
       ),
+      body: SingleChildScrollView(
+
+      ),
     );
   }
 }
