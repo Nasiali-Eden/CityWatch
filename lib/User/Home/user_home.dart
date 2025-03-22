@@ -1,9 +1,8 @@
-import 'package:city_watch/User/Home/Help/user_help.dart';
 import 'package:city_watch/User/Home/HomeScreen/user_homescreen.dart';
-import 'package:city_watch/User/Home/Profile/user_profile.dart';
 import 'package:city_watch/User/Home/Reports/user_reports.dart';
+import 'package:city_watch/User/Home/Help/user_help.dart';
+import 'package:city_watch/User/Home/Profile/user_profile.dart';
 import 'package:flutter/material.dart';
-
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key});
@@ -15,12 +14,21 @@ class UserHome extends StatefulWidget {
 class _UserHomeState extends State<UserHome> {
   int currentPage = 0;
 
-  final List<Widget> pages = [
-    const UserHomeScreen(),
-    const UserReports(),
-    const UserHelp(),
-    const UserProfile(),
-  ];
+  // Create a global key for the UserHomeScreen so we can reset its nested Navigator.
+  final GlobalKey<UserHomeScreenState> homeKey = GlobalKey<UserHomeScreenState>();
+
+  late final List<Widget> pages;
+
+  @override
+  void initState() {
+    super.initState();
+    pages = [
+      UserHomeScreen(key: homeKey),
+      const UserReports(),
+      const UserHelp(),
+      const UserProfile(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +50,8 @@ class _UserHomeState extends State<UserHome> {
           elevation: 100.0,
           color: Colors.white, // Background color of the BottomAppBar
           height: 85.0,
-
           child: Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly, // Evenly distribute icons
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Evenly distribute icons
             children: <Widget>[
               Column(
                 mainAxisSize: MainAxisSize.min,
@@ -59,9 +65,14 @@ class _UserHomeState extends State<UserHome> {
                     ),
                     iconSize: 25.0,
                     onPressed: () {
-                      setState(() {
-                        currentPage = 0;
-                      });
+                      if (currentPage == 0) {
+                        // If already on Home, reset its nested navigator to the root.
+                        homeKey.currentState?.popToRoot();
+                      } else {
+                        setState(() {
+                          currentPage = 0;
+                        });
+                      }
                     },
                   ),
                   Text(

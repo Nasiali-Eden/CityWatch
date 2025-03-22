@@ -7,14 +7,18 @@ class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({super.key});
 
   @override
-  State<UserHomeScreen> createState() => _UserHomeScreenState();
+  State<UserHomeScreen> createState() => UserHomeScreenState();
 }
 
-class _UserHomeScreenState extends State<UserHomeScreen> {
-  // Key for the nested Navigator
+class UserHomeScreenState extends State<UserHomeScreen> {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
-  // Show the popup menu for child actions
+  // Call this method to pop the nested navigator back to the home (root) page.
+  void popToRoot() {
+    _navigatorKey.currentState?.popUntil((route) => route.isFirst);
+  }
+
+  // Show the popup menu for the + button.
   void _showMenu(BuildContext context, Offset offset) {
     showMenu(
       context: context,
@@ -31,8 +35,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
         PopupMenuItem(
           value: 'volunteer',
           child: ListTile(
-            leading:
-            const Icon(Icons.volunteer_activism, color: Colors.teal),
+            leading: const Icon(Icons.volunteer_activism, color: Colors.teal),
             title: const Text('Become a Volunteer'),
           ),
         ),
@@ -51,7 +54,6 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
     final double deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      // AppBar with a popup menu button on the right.
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(56.0),
         child: Container(
@@ -59,8 +61,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color:
-                Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()),
+                color: Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()),
                 blurRadius: 4.0,
                 offset: const Offset(0, 3),
               ),
@@ -79,16 +80,13 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
             ),
             actions: [
               IconButton(
-                icon: const Icon(Icons.add_circle,
-                    color: Colors.deepPurpleAccent),
+                icon: const Icon(Icons.add_circle, color: Colors.deepPurpleAccent),
                 onPressed: () {
-                  // Use the context of the AppBar to show the menu.
                   RenderBox? overlay = Overlay.of(context)
                       .context
                       .findRenderObject() as RenderBox?;
-                  Offset offset =
-                      overlay?.localToGlobal(overlay.size.topRight(Offset.zero)) ??
-                          Offset.zero;
+                  Offset offset = overlay?.localToGlobal(overlay.size.topRight(Offset.zero)) ??
+                      Offset.zero;
                   _showMenu(context, offset);
                 },
               ),
@@ -96,7 +94,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           ),
         ),
       ),
-      // Body uses a nested Navigator so that child screens are pushed within UserHomeScreen.
+      // Nested navigator for child routes.
       body: Navigator(
         key: _navigatorKey,
         initialRoute: '/',
@@ -125,7 +123,7 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
   }
 }
 
-/// The default content for the Home screen.
+/// The default home content.
 class HomeContent extends StatelessWidget {
   const HomeContent({super.key});
   @override
@@ -145,12 +143,13 @@ class HomeContent extends StatelessWidget {
             child: Text(
               'Top Updates',
               style: TextStyle(
-                  color: Colors.teal,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
+                color: Colors.teal,
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
-          // Add more Home content here if needed.
+          // Additional Home content can go here.
         ],
       ),
     );
