@@ -8,189 +8,238 @@ class VolunteerReg extends StatefulWidget {
 }
 
 class _VolunteerRegState extends State<VolunteerReg> {
-
   final _formKey = GlobalKey<FormState>();
 
+  // Controllers
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _skillController = TextEditingController();
-  final TextEditingController _availabilityController = TextEditingController();
 
+  // State variables to hold the selected values
   String _skill = '';
   String _availability = '';
   String _name = '';
 
+  // Dropdown options
+  final List<String> _skillOptions = [
+    'Medical',
+    'Physical',
+    'Financial',
+    'Legal',
+    'Emotional',
+    'Shelter',
+    'Office-Work',
+  ];
 
-  void _onSkillChanged(String value) {
-    setState(() {
-      _skill = value;
-    });
-  }
+  final List<String> _availabilityOptions = [
+    'Full-Time',
+    'When Needed',
+  ];
 
-  void _onAvailabilityChanged(String value) {
-    setState(() {
-      _availability = value;
-    });
-  }
+  // Update name as the user types
   void _onNameChanged(String value) {
     setState(() {
       _name = value;
     });
   }
+
+  // Called when the user presses "Register"
+  void _onRegisterPressed() {
+    if (_formKey.currentState?.validate() ?? false) {
+      // All fields are valid, proceed with form submission
+      debugPrint("Name: $_name");
+      debugPrint("Skill: $_skill");
+      debugPrint("Availability: $_availability");
+
+      // ... Add your Firebase submission or other logic here ...
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      body: Form(
+        key: _formKey,
+        child: ListView(
+          padding: const EdgeInsets.all(0.0),
+          children: [
+            // Header
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 20),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+                  height: 35,
+                  color: Colors.teal[700],
+                  child: const Text(
+                    'Register as volunteer',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            // Name
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              child: TextFormField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  labelText: '1. Full Names',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black54),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black87, width: 0.1),
+                  ),
+                ),
+                onChanged: _onNameChanged,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter your full names';
+                  }
+                  return null;
+                },
+              ),
+            ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(0.0),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              Column(
-                crossAxisAlignment:
-                CrossAxisAlignment.stretch, // Stretch to full width
+            // Skill Dropdown
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              child: DropdownButtonFormField<String>(
+                dropdownColor: Colors.white,
+                value: _skill.isNotEmpty ? _skill : null,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  labelText: '2. Choose your Skills',
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black54),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black87, width: 0.1),
+                  ),
+                ),
+                items: _skillOptions.map((String option) {
+                  return DropdownMenuItem<String>(
+                    value: option,
+                    child: Text(option),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _skill = newValue ?? '';
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select a skill';
+                  }
+                  return null;
+                },
+              ),
+            ),
+
+            // Availability Dropdown
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              child: DropdownButtonFormField<String>(
+                dropdownColor: Colors.white,
+                value: _availability.isNotEmpty ? _availability : null,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  labelText: '3. Confirm availability',
+                  labelStyle: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black54),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black87, width: 0.1),
+                  ),
+                ),
+                items: _availabilityOptions.map((String option) {
+                  return DropdownMenuItem<String>(
+                    value: option,
+                    child: Text(option),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _availability = newValue ?? '';
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select your availability';
+                  }
+                  return null;
+                },
+              ),
+            ),
+
+            // Photo Upload
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
                 children: [
-                  SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
-                    margin: EdgeInsets.symmetric(vertical: 0),
-                    height: 35,
-                    color: Colors.teal[700],
-                    child: Text(
-                      'Register as volunteer',
-                      style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
+                  const Text(
+                    '4. Add a Passport Size photo',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  GestureDetector(
+                    onTap: () {
+                      // TODO: Implement photo selection logic
+                    },
+                    child: Icon(
+                      Icons.add_a_photo_outlined,
+                      size: 21,
+                      color: Colors.grey[800],
                     ),
                   ),
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                child: TextFormField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: '1. Full Names',
-                    labelStyle: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w400),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black54),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 0.1),
-                    ),
-                  ),
-                  onChanged: _onNameChanged,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter your full names';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                child: TextFormField(
-                  controller: _skillController,
-                  decoration: InputDecoration(
-                    labelText: '2. Choose your Skills',
-                    labelStyle: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w400),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black54),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 0.1),
-                    ),
-                  ),
-                  onChanged: _onSkillChanged,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please add the headline';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                child: TextFormField(
-                  controller: _availabilityController,
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                    labelText: '3. Confirm availability',
-                    labelStyle: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w400),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black54),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 0.1),
-                    ),
-                  ),
-                  onChanged: _onAvailabilityChanged,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please add your availability';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
+            ),
 
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children: [
-                    Text(
-                      'Add a Passport Size photo',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 17),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    GestureDetector(
-                      child: Icon(
-                        Icons.add_a_photo_outlined,
-                        size: 21,
-                        color: Colors.grey[800],
-                      ),
-                      onTap: (){},
-                    ),
-                  ],
-                ),
-              ),
-
-              SizedBox(
-                height: 25,
-              ),
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurpleAccent,
-                    padding: const EdgeInsets.all(15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    'Register',
-                    style: TextStyle(color: Colors.white),
+            // Register Button
+            const SizedBox(height: 25),
+            Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepPurpleAccent,
+                  padding: const EdgeInsets.all(15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
+                onPressed: _onRegisterPressed,
+                child: const Text(
+                  'Register',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
