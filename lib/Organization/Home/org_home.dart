@@ -15,38 +15,53 @@ class OrganizationHome extends StatefulWidget {
 class _OrganizationHomeState extends State<OrganizationHome> {
   int currentPage = 0;
 
-  final List<Widget> pages = [
-    const OrgDashboard(),
-    const UserReports(),
-    const OrgTeam(),
-    const OrgVolunteers(),
-    const OrgProfile()
-  ];
+  // GlobalKey for OrgDashboard (the first page)
+  final GlobalKey<OrgDashboardState> dashboardKey =
+  GlobalKey<OrgDashboardState>();
+
+  late final List<Widget> pages;
+
+  @override
+  void initState() {
+    super.initState();
+    pages = [
+      OrgDashboard(key: dashboardKey),
+      const UserReports(),
+      const OrgTeam(),
+      const OrgVolunteers(),
+      const OrgProfile(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: pages[currentPage], // Display the current page
+      // Use an IndexedStack to preserve the state of each page
+      body: IndexedStack(
+        index: currentPage,
+        children: pages,
+      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()), // Shadow color
-              spreadRadius: 2, // Spread radius
-              blurRadius: 10, // Blur radius
-              offset: const Offset(0, -2), // Shadow position
+              color:
+              Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: const Offset(0, -2),
             ),
           ],
         ),
         child: BottomAppBar(
-          elevation: 0, // Set elevation to 0 since we're using a custom shadow
-          color: Colors.white, // Background color of the BottomAppBar
+          elevation: 0,
+          color: Colors.white,
           height: 85.0,
           child: Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly, // Evenly distribute icons
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              // Dashboard icon
               Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -59,9 +74,14 @@ class _OrganizationHomeState extends State<OrganizationHome> {
                     ),
                     iconSize: 25.0,
                     onPressed: () {
-                      setState(() {
-                        currentPage = 0;
-                      });
+                      if (currentPage == 0) {
+                        // If already on Dashboard, reset its nested navigator.
+                        dashboardKey.currentState?.popToRoot();
+                      } else {
+                        setState(() {
+                          currentPage = 0;
+                        });
+                      }
                     },
                   ),
                   Text(
@@ -75,6 +95,7 @@ class _OrganizationHomeState extends State<OrganizationHome> {
                   )
                 ],
               ),
+              // Other bottom nav icons...
               Column(
                 children: [
                   IconButton(
