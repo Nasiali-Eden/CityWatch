@@ -1,4 +1,8 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../Services/Incidents/incident_upload.dart';
+import '../../Services/Incidents/map_selection.dart';
 
 class PostIncident extends StatefulWidget {
   const PostIncident({super.key});
@@ -11,217 +15,186 @@ class _PostIncidentState extends State<PostIncident> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _headlineController = TextEditingController();
+  final UploadIncident _uploadIncident = UploadIncident();
 
-  String _headline = '';
-  String _description = '';
+  String _selectedType = '';
+  LatLng? _selectedLatLng;
+  List<File> _selectedImages = [];
 
-  void _onHeadlineChanged(String value) {
+  Future<void> _pickImages() async {
+    List<File> images = await _uploadIncident.pickAndCropImages();
     setState(() {
-      _headline = value;
+      _selectedImages = images;
     });
   }
 
-  void _onDescriptionChanged(String value) {
-    setState(() {
-      _description = value;
-    });
+  Future<void> _getCurrentLocation() async {
+    String? location = await _uploadIncident.getCurrentLocation();
+    if (location != null) {
+      List<String> latLng = location.split(",");
+      setState(() {
+        _selectedLatLng = LatLng(double.parse(latLng[0]), double.parse(latLng[1]));
+      });
+    }
   }
 
-  final List<String> _selectedTypes = [];
+  Future<void> _selectCustomLocation() async {
+    LatLng? selectedLocation = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => MapSelectionScreen()),
+    );
 
-  void _toggleType(String type) {
-    setState(() {
-      if (_selectedTypes.contains(type)) {
-        // If the type is already selected, deselect it
-        _selectedTypes.remove(type);
-      } else {
-        // If the type is not selected, clear the list and select the new type
-        _selectedTypes.clear();
-        _selectedTypes.add(type);
-      }
-    });
+    if (selectedLocation != null) {
+      setState(() {
+        _selectedLatLng = selectedLocation;
+      });
+    }
   }
 
-  void _toggleLocation(String location) {
-    setState(() {
-      if (_selectedTypes.contains(location)) {
-        _selectedTypes.remove(location);
-      } else {
-        _selectedTypes.clear();
-        _selectedTypes.add(location);
-      }
-    });
+  void _postIncident() {
+    if (_formKey.currentState!.validate() &&
+        _selectedType.isNotEmpty &&
+        _selectedLatLng != null) {
+      _uploadIncident.uploadIncident(
+        headline: _headlineController.text.trim(),
+        description: _descriptionController.text.trim(),
+        type: _selectedType,
+        images: _selectedImages,
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please complete all fields!')),
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final double deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
-
-      body: Padding(
-        padding: const EdgeInsets.all(0.0),
+      backgroundColor: Colors.grey[100], // Light background
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Form(
           key: _formKey,
-          child: ListView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment:
-                    CrossAxisAlignment.stretch, // Stretch to full width
-                children: [
-                  SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 7),
-                    margin: EdgeInsets.symmetric(vertical: 0),
-                    height: 35,
-                    color: Colors.teal[700],
-                    child: Text(
-                      'Report Incident',
-                      style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800),
+              // Header
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.teal[700],
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Center(
+                  child: Text(
+                    'Report Incident',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                child: TextFormField(
-                  controller: _headlineController,
-                  decoration: InputDecoration(
-                    labelText: '1. Input Headline',
-                    labelStyle: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w400),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black54),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 0.1),
-                    ),
-                  ),
-                  onChanged: _onHeadlineChanged,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please add the headline';
-                    }
-                    return null;
-                  },
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                child: Text(
-                  '2. What type of Incident are you reporting?',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 17),
-                ),
-              ),
-              Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 3,
-                runSpacing: 2,
-                children: [
-                  _buildStyleRadioButton('Health'),
-                  _buildStyleRadioButton('Fire'),
-                  _buildStyleRadioButton('Floods'),
-                  _buildStyleRadioButton('Wildlife'),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                child: TextFormField(
-                  controller: _descriptionController,
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                    labelText: '3. Description of Incident',
-                    labelStyle: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w400),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black54),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black87, width: 0.1),
-                    ),
-                  ),
-                  onChanged: _onDescriptionChanged,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please add Description';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 7,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  '4. Choose Location',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 17),
-                ),
-              ),
-              Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 5,
-                runSpacing: 8,
-                children: [
-                  _buildLocationRadioButton('Use Current Location'),
-                  _buildLocationRadioButton('Use Custom Location'),
-                ],
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children: [
-                    Text(
-                      '5. Click if you wish to add images...',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 17),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    GestureDetector(
-                      child: Icon(
-                        Icons.add_a_photo_outlined,
-                        size: 21,
-                        color: Colors.grey[800],
-                      ),
-                      onTap: (){},
-                    ),
-                  ],
-                ),
+              const SizedBox(height: 20),
+
+              // Headline Input
+              _buildSectionTitle('1. Input Headline'),
+              _buildTextField(_headlineController, 'Enter headline...'),
+
+              const SizedBox(height: 20),
+
+              // Incident Type
+              _buildSectionTitle('2. Select Incident Type'),
+              DropdownButtonFormField<String>(
+                value: _selectedType.isEmpty ? null : _selectedType,
+                decoration: _inputDecoration(),
+                items: ['Fire', 'Accident', 'Crime', 'Other']
+                    .map((type) => DropdownMenuItem(
+                  value: type,
+                  child: Text(type),
+                ))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedType = value!;
+                  });
+                },
+                validator: (value) => value == null ? 'Please select an incident type' : null,
               ),
 
-              SizedBox(
-                height: 25,
+              const SizedBox(height: 20),
+
+              // Description Input
+              _buildSectionTitle('3. Describe the Incident'),
+              _buildTextField(_descriptionController, 'Enter description...', maxLines: 3),
+
+              const SizedBox(height: 20),
+
+              // Location Selection
+              _buildSectionTitle('4. Choose Location'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _buildLocationButton("Use Current Location", _getCurrentLocation),
+                  _buildLocationButton("Select Custom Location", _selectCustomLocation),
+                ],
               ),
+              if (_selectedLatLng != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Text(
+                    "Selected Location: ${_selectedLatLng!.latitude}, ${_selectedLatLng!.longitude}",
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                ),
+
+              const SizedBox(height: 20),
+
+              // Image Upload
+              _buildSectionTitle('5. Upload Images'),
+              ElevatedButton(
+                style: _elevatedButtonStyle(),
+                onPressed: _pickImages,
+                child: const Text("Pick Images"),
+              ),
+              if (_selectedImages.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: _selectedImages
+                        .map((image) => ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.file(
+                        image,
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                      ),
+                    ))
+                        .toList(),
+                  ),
+                ),
+
+              const SizedBox(height: 30),
+
+              // Post Button
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurpleAccent,
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
-                  child: Text(
-                    'Post',
-                    style: TextStyle(color: Colors.white),
+                  onPressed: _postIncident,
+                  child: const Text(
+                    "Post Incident",
+                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
@@ -232,61 +205,53 @@ class _PostIncidentState extends State<PostIncident> {
     );
   }
 
-  Widget _buildStyleRadioButton(String type) {
+  Widget _buildSectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6.0),
-      child: FilterChip(
-        label: Text(
-          type,
-          // Conditional text color based on selection
-          style: TextStyle(
-            color: _selectedTypes.contains(type)
-                ? Colors.white
-                : Colors.deepPurpleAccent,
-          ),
-        ),
-        selected: _selectedTypes.contains(type),
-        onSelected: (selected) {
-          _toggleType(type);
-        },
-        backgroundColor: Colors.white, // Background color when not selected
-        selectedColor: Colors.deepPurpleAccent, // Background color when selected
-        side: _selectedTypes.contains(type)
-            ? BorderSide.none // No border when selected
-            : BorderSide(
-                color: Colors.deepPurpleAccent, // Border color when not selected
-              ),
+      padding: const EdgeInsets.only(bottom: 5),
+      child: Text(
+        title,
+        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Colors.black),
       ),
     );
   }
 
-  Widget _buildLocationRadioButton(String location) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6.0),
-      child: FilterChip(
-        label: Text(
-          location,
-          // Conditional text color based on selection
-          style: TextStyle(
-            color: _selectedTypes.contains(location)
-                ? Colors.white
-                : Colors.deepPurpleAccent,
-          ),
-        ),
-        selected: _selectedTypes.contains(location),
-        onSelected: (selected) {
-          _toggleLocation(location);
-        },
-        backgroundColor: Colors.white,
-        // Background color when not selected
-        selectedColor: Colors.deepPurpleAccent,
-        // Background color when selected
-        side: _selectedTypes.contains(location)
-            ? BorderSide.none // No border when selected
-            : BorderSide(
-          color: Colors.deepPurpleAccent, // Border color when not selected
-        ),
+  Widget _buildTextField(TextEditingController controller, String hintText, {int maxLines = 1}) {
+    return TextFormField(
+      controller: controller,
+      maxLines: maxLines,
+      decoration: _inputDecoration().copyWith(hintText: hintText),
+      validator: (value) => value!.isEmpty ? 'This field cannot be empty' : null,
+    );
+  }
+
+  Widget _buildLocationButton(String text, VoidCallback onPressed) {
+    return ElevatedButton(
+      style: _elevatedButtonStyle(),
+      onPressed: onPressed,
+      child: Text(text),
+    );
+  }
+
+  InputDecoration _inputDecoration() {
+    return InputDecoration(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.black54),
+        borderRadius: BorderRadius.circular(8),
       ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.deepPurpleAccent, width: 1.5),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+  }
+
+  ButtonStyle _elevatedButtonStyle() {
+    return ElevatedButton.styleFrom(
+      backgroundColor: Colors.teal[700],
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     );
   }
 }

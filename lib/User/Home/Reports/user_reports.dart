@@ -108,13 +108,23 @@ class _UserReportsState extends State<UserReports> {
                   elevation: 5,
                   child: Column(
                     children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          icon: const Icon(Icons.close, color: Colors.deepPurpleAccent),
-                          onPressed: _toggleDrawer,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 16,),
+                            child: Text(
+                              'Recent Updates',
+                              style: TextStyle(color: Colors.teal, fontWeight: FontWeight.w500, fontSize: 17),
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close, color: Colors.deepPurpleAccent),
+                            onPressed: _toggleDrawer,
+                          ),
+                        ],
                       ),
+
                       Expanded(
                         child: ListView.builder(
                           itemCount: 20, // Example items
