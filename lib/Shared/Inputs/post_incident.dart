@@ -33,7 +33,8 @@ class _PostIncidentState extends State<PostIncident> {
     if (location != null) {
       List<String> latLng = location.split(",");
       setState(() {
-        _selectedLatLng = LatLng(double.parse(latLng[0]), double.parse(latLng[1]));
+        _selectedLatLng =
+            LatLng(double.parse(latLng[0]), double.parse(latLng[1]));
       });
     }
   }
@@ -112,23 +113,25 @@ class _PostIncidentState extends State<PostIncident> {
                 decoration: _inputDecoration(),
                 items: ['Fire', 'Accident', 'Crime', 'Other']
                     .map((type) => DropdownMenuItem(
-                  value: type,
-                  child: Text(type),
-                ))
+                          value: type,
+                          child: Text(type),
+                        ))
                     .toList(),
                 onChanged: (value) {
                   setState(() {
                     _selectedType = value!;
                   });
                 },
-                validator: (value) => value == null ? 'Please select an incident type' : null,
+                validator: (value) =>
+                    value == null ? 'Please select an incident type' : null,
               ),
 
               const SizedBox(height: 20),
 
               // Description Input
               _buildSectionTitle('3. Describe the Incident'),
-              _buildTextField(_descriptionController, 'Enter description...', maxLines: 3),
+              _buildTextField(_descriptionController, 'Enter description...',
+                  maxLines: 3),
 
               const SizedBox(height: 20),
 
@@ -137,8 +140,10 @@ class _PostIncidentState extends State<PostIncident> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildLocationButton("Use Current Location", _getCurrentLocation),
-                  _buildLocationButton("Select Custom Location", _selectCustomLocation),
+                  _buildLocationButton(
+                      "Use Current Location", _getCurrentLocation),
+                  _buildLocationButton(
+                      "Select Custom Location", _selectCustomLocation),
                 ],
               ),
               if (_selectedLatLng != null)
@@ -146,7 +151,8 @@ class _PostIncidentState extends State<PostIncident> {
                   padding: const EdgeInsets.only(top: 10),
                   child: Text(
                     "Selected Location: ${_selectedLatLng!.latitude}, ${_selectedLatLng!.longitude}",
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
 
@@ -157,7 +163,10 @@ class _PostIncidentState extends State<PostIncident> {
               ElevatedButton(
                 style: _elevatedButtonStyle(),
                 onPressed: _pickImages,
-                child: const Text("Pick Images"),
+                child: const Text(
+                  "Pick Images",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
               if (_selectedImages.isNotEmpty)
                 Padding(
@@ -167,14 +176,14 @@ class _PostIncidentState extends State<PostIncident> {
                     runSpacing: 8,
                     children: _selectedImages
                         .map((image) => ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.file(
-                        image,
-                        width: 80,
-                        height: 80,
-                        fit: BoxFit.cover,
-                      ),
-                    ))
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.file(
+                                image,
+                                width: 80,
+                                height: 80,
+                                fit: BoxFit.cover,
+                              ),
+                            ))
                         .toList(),
                   ),
                 ),
@@ -186,7 +195,8 @@ class _PostIncidentState extends State<PostIncident> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurpleAccent,
-                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 30),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -194,7 +204,10 @@ class _PostIncidentState extends State<PostIncident> {
                   onPressed: _postIncident,
                   child: const Text(
                     "Post Incident",
-                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
               ),
@@ -210,17 +223,20 @@ class _PostIncidentState extends State<PostIncident> {
       padding: const EdgeInsets.only(bottom: 5),
       child: Text(
         title,
-        style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600, color: Colors.black),
+        style: const TextStyle(
+            fontSize: 17, fontWeight: FontWeight.w600, color: Colors.black),
       ),
     );
   }
 
-  Widget _buildTextField(TextEditingController controller, String hintText, {int maxLines = 1}) {
+  Widget _buildTextField(TextEditingController controller, String hintText,
+      {int maxLines = 1}) {
     return TextFormField(
       controller: controller,
       maxLines: maxLines,
       decoration: _inputDecoration().copyWith(hintText: hintText),
-      validator: (value) => value!.isEmpty ? 'This field cannot be empty' : null,
+      validator: (value) =>
+          value!.isEmpty ? 'This field cannot be empty' : null,
     );
   }
 
@@ -228,7 +244,10 @@ class _PostIncidentState extends State<PostIncident> {
     return ElevatedButton(
       style: _elevatedButtonStyle(),
       onPressed: onPressed,
-      child: Text(text),
+      child: Text(
+        text,
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
