@@ -115,6 +115,7 @@ class UploadIncident {
     required String description,
     required String type,
     required List<File> images,
+    required BuildContext context,
   }) async {
     try {
       User? user = _auth.currentUser;
@@ -157,6 +158,9 @@ class UploadIncident {
           .set(incidentData);
 
       debugPrint("Incident successfully uploaded.");
+
+      // Navigate to the home page (replace 'HomePage' with your actual screen)
+      Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       debugPrint("Error uploading incident: $e");
     }

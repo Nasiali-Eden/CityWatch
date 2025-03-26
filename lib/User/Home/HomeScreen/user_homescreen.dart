@@ -1,7 +1,7 @@
 import 'package:city_watch/Shared/Inputs/post_incident.dart';
 import 'package:flutter/material.dart';
 
-import '../volunteer_reg.dart';
+import '../../Authentication/volunteer_reg.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({super.key});

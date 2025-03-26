@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:city_watch/User/Authentication/volunteer_service.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class VolunteerReg extends StatefulWidget {
   const VolunteerReg({super.key});
@@ -42,14 +46,52 @@ class _VolunteerRegState extends State<VolunteerReg> {
   }
 
   // Called when the user presses "Register"
-  void _onRegisterPressed() {
+  void _onRegisterPressed() async {
     if (_formKey.currentState?.validate() ?? false) {
-      // All fields are valid, proceed with form submission
-      debugPrint("Name: $_name");
-      debugPrint("Skill: $_skill");
-      debugPrint("Availability: $_availability");
+      if (_selectedPhoto == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Please upload a passport-size photo")),
+        );
+        return;
+      }
 
-      // ... Add your Firebase submission or other logic here ...
+      try {
+        await VolunteerService().registerVolunteer(
+          fullName: _name,
+          skill: _skill,
+          availability: _availability,
+          photo: _selectedPhoto!,
+          context: context,
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Volunteer Registered Successfully")),
+        );
+
+        Navigator.pushReplacementNamed(context, '/home');
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error: $e")),
+        );
+      }
+    }
+  }
+
+
+  File? _selectedPhoto;
+
+  Future<void> _pickPhoto() async {
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 85, // Reduce size while maintaining quality
+      maxHeight: 500, // Ensure it's 1:1 aspect ratio
+      maxWidth: 500,
+    );
+
+    if (pickedFile != null) {
+      setState(() {
+        _selectedPhoto = File(pickedFile.path);
+      });
     }
   }
 
@@ -200,26 +242,33 @@ class _VolunteerRegState extends State<VolunteerReg> {
                 children: [
                   const Text(
                     '4. Add a Passport Size photo',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 17,
-                    ),
+                    style: TextStyle(color: Colors.black, fontSize: 17),
                   ),
                   const SizedBox(width: 5),
                   GestureDetector(
-                    onTap: () {
-                      // TODO: Implement photo selection logic
-                    },
+                    onTap: _pickPhoto,
                     child: Icon(
                       Icons.add_a_photo_outlined,
                       size: 21,
                       color: Colors.grey[800],
                     ),
                   ),
+                  const SizedBox(width: 10),
+                  _selectedPhoto != null
+                      ? ClipRRect(
+                    borderRadius: BorderRadius.circular(50),
+                    child: Image.file(
+                      _selectedPhoto!,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                      : const SizedBox(),
                 ],
               ),
             ),
+
 
             // Register Button
             const SizedBox(height: 25),

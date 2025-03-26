@@ -1,7 +1,7 @@
 import 'package:city_watch/Shared/Inputs/post_incident.dart';
 import 'package:flutter/material.dart';
 
-import '../post_article.dart';
+import '../../Articles/post_article.dart';
 
 class OrgDashboard extends StatefulWidget {
   const OrgDashboard({super.key});
@@ -25,14 +25,14 @@ class OrgDashboardState extends State<OrgDashboard> {
         PopupMenuItem(
           value: 'uploadArticle',
           child: ListTile(
-            leading: const Icon(Icons.article, color: Colors.white),
+            leading: const Icon(Icons.article, color: Colors.teal),
             title: const Text('Upload Article'),
           ),
         ),
         PopupMenuItem(
           value: 'uploadIncident',
           child: ListTile(
-            leading: const Icon(Icons.report, color: Colors.white),
+            leading: const Icon(Icons.report, color: Colors.teal),
             title: const Text('Upload Incident'),
           ),
         ),

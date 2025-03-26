@@ -61,6 +61,7 @@ class _PostIncidentState extends State<PostIncident> {
         description: _descriptionController.text.trim(),
         type: _selectedType,
         images: _selectedImages,
+        context: context,
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
