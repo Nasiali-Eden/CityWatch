@@ -10,7 +10,9 @@ class AddTeam extends StatefulWidget {
 class _AddTeamState extends State<AddTeam> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _teamNameController = TextEditingController();
-  final List<TextEditingController> _rolesControllers = [TextEditingController(text: 'Team Lead')];
+  final List<TextEditingController> _rolesControllers = [
+    TextEditingController(text: 'Team Lead')
+  ];
   final List<Map<String, dynamic>> _teamMembers = [];
 
   bool showForm = false;
@@ -57,13 +59,14 @@ class _AddTeamState extends State<AddTeam> {
       backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize:
-        const Size.fromHeight(56.0), // Set the height of the AppBar
+            const Size.fromHeight(56.0), // Set the height of the AppBar
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
             boxShadow: [
               BoxShadow(
-                color: Colors.deepPurpleAccent.withAlpha((0.05 * 255).toInt()), // Shadow color with opacity
+                color: Colors.deepPurpleAccent.withAlpha(
+                    (0.05 * 255).toInt()), // Shadow color with opacity
                 blurRadius: 4.0, // Adjust the blur radius
                 offset: Offset(0, 3), // Position of the shadow
               ),
@@ -71,7 +74,7 @@ class _AddTeamState extends State<AddTeam> {
           ),
           child: AppBar(
             backgroundColor:
-            Colors.transparent, // Make the AppBar background transparent
+                Colors.transparent, // Make the AppBar background transparent
             elevation: 0, // Remove default shadow
             title: Text(
               'Edit Teams',
@@ -97,7 +100,7 @@ class _AddTeamState extends State<AddTeam> {
                       showForm = true;
                     });
                   }),
-                  _buildActionButton('Edit Teams', () {}),
+
                 ],
               ),
               const SizedBox(height: 10),
@@ -118,7 +121,6 @@ class _AddTeamState extends State<AddTeam> {
         decoration: BoxDecoration(
           color: Colors.green,
           borderRadius: BorderRadius.circular(10),
-
         ),
         child: Center(
           child: Text(
@@ -159,17 +161,19 @@ class _AddTeamState extends State<AddTeam> {
     );
   }
 
-  Widget _buildTextField(String label, TextEditingController controller, {VoidCallback? onRemove}) {
+  Widget _buildTextField(String label, TextEditingController controller,
+      {VoidCallback? onRemove}) {
     return Row(
       children: [
         Expanded(
           child: TextFormField(
             controller: controller,
-            validator: (value) => value!.isEmpty ? 'This field is required' : null,
+            validator: (value) =>
+                value!.isEmpty ? 'This field is required' : null,
             decoration: InputDecoration(
               labelText: label,
-              labelStyle:
-              const TextStyle(color: Colors.black, fontWeight: FontWeight.w400),
+              labelStyle: const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.w400),
               enabledBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black54)),
               focusedBorder: const UnderlineInputBorder(
@@ -191,12 +195,17 @@ class _AddTeamState extends State<AddTeam> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Roles:',
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Colors.black)),
+            style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w400,
+                color: Colors.black)),
         for (int i = 0; i < _rolesControllers.length; i++)
-          _buildTextField('Role', _rolesControllers[i], onRemove: i == 0 ? null : () => _removeRole(i)),
+          _buildTextField('Role', _rolesControllers[i],
+              onRemove: i == 0 ? null : () => _removeRole(i)),
         TextButton(
           onPressed: _addRole,
-          child: const Text('+ Add Role', style: TextStyle(color: Colors.teal, fontSize: 16)),
+          child: const Text('+ Add Role',
+              style: TextStyle(color: Colors.teal, fontSize: 16)),
         ),
       ],
     );
@@ -207,11 +216,16 @@ class _AddTeamState extends State<AddTeam> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text('Add Team Members',
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w400, color: Colors.black)),
+            style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w400,
+                color: Colors.black)),
         for (int i = 0; i < _teamMembers.length; i++)
           Row(
             children: [
-              Expanded(child: _buildTextField('Member Name', _teamMembers[i]['name'])),
+              Expanded(
+                  child:
+                      _buildTextField('Member Name', _teamMembers[i]['name'])),
               DropdownButton<String>(
                 hint: const Text('Select Role'),
                 value: _teamMembers[i]['role'],
@@ -235,7 +249,8 @@ class _AddTeamState extends State<AddTeam> {
           ),
         TextButton(
           onPressed: _addTeamMember,
-          child: const Text('+ Add Member', style: TextStyle(color: Colors.teal, fontSize: 16)),
+          child: const Text('+ Add Member',
+              style: TextStyle(color: Colors.teal, fontSize: 16)),
         ),
       ],
     );

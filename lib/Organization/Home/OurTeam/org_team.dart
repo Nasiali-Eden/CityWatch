@@ -68,7 +68,7 @@ class _OrgTeamState extends State<OrgTeam> {
                       color: Colors.white,
                     ),
                     Text(
-                      'Edit Teams',
+                      'Add new team',
                       style: TextStyle(color: Colors.white),
                     )
                   ],
