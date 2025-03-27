@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:city_watch/User/Authentication/volunteer_service.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,15 +13,17 @@ class VolunteerReg extends StatefulWidget {
 class _VolunteerRegState extends State<VolunteerReg> {
   final _formKey = GlobalKey<FormState>();
 
-  // Controllers
+  // Controllers for text fields.
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _contactController = TextEditingController();
 
-  // State variables to hold the selected values
+  // State variables to hold the selected values.
   String _skill = '';
   String _availability = '';
   String _name = '';
+  String _contact = '';
 
-  // Dropdown options
+  // Dropdown options.
   final List<String> _skillOptions = [
     'Medical',
     'Physical',
@@ -38,14 +39,21 @@ class _VolunteerRegState extends State<VolunteerReg> {
     'When Needed',
   ];
 
-  // Update name as the user types
+  // Update name as the user types.
   void _onNameChanged(String value) {
     setState(() {
       _name = value;
     });
   }
 
-  // Called when the user presses "Register"
+  // Update contact as the user types.
+  void _onContactChanged(String value) {
+    setState(() {
+      _contact = value;
+    });
+  }
+
+  // Called when the user presses "Register".
   void _onRegisterPressed() async {
     if (_formKey.currentState?.validate() ?? false) {
       if (_selectedPhoto == null) {
@@ -61,6 +69,7 @@ class _VolunteerRegState extends State<VolunteerReg> {
           skill: _skill,
           availability: _availability,
           photo: _selectedPhoto!,
+          contact: _contact,
           context: context,
         );
 
@@ -77,14 +86,13 @@ class _VolunteerRegState extends State<VolunteerReg> {
     }
   }
 
-
   File? _selectedPhoto;
 
   Future<void> _pickPhoto() async {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
-      imageQuality: 85, // Reduce size while maintaining quality
-      maxHeight: 500, // Ensure it's 1:1 aspect ratio
+      imageQuality: 85, // Reduce size while maintaining quality.
+      maxHeight: 500, // Ensure 1:1 aspect ratio.
       maxWidth: 500,
     );
 
@@ -124,7 +132,7 @@ class _VolunteerRegState extends State<VolunteerReg> {
                 ),
               ],
             ),
-            // Name
+            // Name Field
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: TextFormField(
@@ -151,7 +159,33 @@ class _VolunteerRegState extends State<VolunteerReg> {
                 },
               ),
             ),
-
+            // Contact Field
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+              child: TextFormField(
+                controller: _contactController,
+                decoration: const InputDecoration(
+                  labelText: '2. Contact Details',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w400,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black54),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black87, width: 0.1),
+                  ),
+                ),
+                onChanged: _onContactChanged,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Enter your contact details';
+                  }
+                  return null;
+                },
+              ),
+            ),
             // Skill Dropdown
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -161,7 +195,7 @@ class _VolunteerRegState extends State<VolunteerReg> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
-                  labelText: '2. Choose your Skills',
+                  labelText: '3. Choose your Skills',
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
@@ -192,7 +226,6 @@ class _VolunteerRegState extends State<VolunteerReg> {
                 },
               ),
             ),
-
             // Availability Dropdown
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -202,7 +235,7 @@ class _VolunteerRegState extends State<VolunteerReg> {
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
-                  labelText: '3. Confirm availability',
+                  labelText: '4. Confirm availability',
                   labelStyle: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w400,
@@ -233,7 +266,6 @@ class _VolunteerRegState extends State<VolunteerReg> {
                 },
               ),
             ),
-
             // Photo Upload
             const SizedBox(height: 15),
             Padding(
@@ -241,7 +273,7 @@ class _VolunteerRegState extends State<VolunteerReg> {
               child: Row(
                 children: [
                   const Text(
-                    '4. Add a Passport Size photo',
+                    '5. Add a Passport Size photo',
                     style: TextStyle(color: Colors.black, fontSize: 17),
                   ),
                   const SizedBox(width: 5),
@@ -268,8 +300,6 @@ class _VolunteerRegState extends State<VolunteerReg> {
                 ],
               ),
             ),
-
-
             // Register Button
             const SizedBox(height: 25),
             Center(

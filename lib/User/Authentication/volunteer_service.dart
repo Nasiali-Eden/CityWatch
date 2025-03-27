@@ -9,12 +9,12 @@ class VolunteerService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // Upload passport-size photo with 1:1 aspect ratio
+  // Upload passport-size photo with 1:1 aspect ratio.
   Future<String?> _uploadPhoto(File imageFile, String skill, String userId) async {
     try {
       Reference ref = _storage.ref().child("volunteers/$skill/$userId/passport.jpg");
 
-      // Upload file to Firebase Storage
+      // Upload file to Firebase Storage.
       UploadTask uploadTask = ref.putFile(imageFile);
       TaskSnapshot snapshot = await uploadTask;
       return await snapshot.ref.getDownloadURL();
@@ -29,6 +29,7 @@ class VolunteerService {
     required String skill,
     required String availability,
     required File photo,
+    required String contact,
     required BuildContext context,
   }) async {
     try {
@@ -39,35 +40,36 @@ class VolunteerService {
 
       String userId = user.uid;
 
-      // Upload photo and get URL
+      // Upload photo and get URL.
       String? photoUrl = await _uploadPhoto(photo, skill, userId);
       if (photoUrl == null) {
         throw Exception("Photo upload failed.");
       }
 
-      // Define Firestore path: Volunteers -> Skill Type -> UID -> volunteerInfo
+      // Firestore path: Volunteers -> [skill] doc -> Members subcollection -> [userId] doc.
       DocumentReference volunteerDoc = _firestore
           .collection('Volunteers')
-          .doc(skill) // Skill Type as Document
-          .collection(userId) // UID as subcollection
-          .doc('volunteerInfo'); // Document name
+          .doc(skill)
+          .collection('Members')
+          .doc(userId);
 
-      // Volunteer Data
+      // Volunteer Data.
       Map<String, dynamic> volunteerData = {
         "fullName": fullName,
         "skill": skill,
         "availability": availability,
+        "contact": contact, // Save contact information.
         "photoUrl": photoUrl,
         "userId": userId,
         "timestamp": FieldValue.serverTimestamp(),
       };
 
-      // Save to Firestore
+      // Save to Firestore.
       await volunteerDoc.set(volunteerData);
 
       print("Volunteer registered successfully!");
 
-      // Navigate to home screen (replace with your actual screen)
+      // Navigate to home screen (replace with your actual screen).
       Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       print("Error registering volunteer: $e");
