@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -115,6 +116,7 @@ class UploadIncident {
     required String description,
     required String type,
     required List<File> images,
+    LatLng? customLocation, // Add custom location parameter
     required BuildContext context,
   }) async {
     try {
@@ -124,7 +126,14 @@ class UploadIncident {
         return;
       }
 
-      String? location = await getCurrentLocation();
+      // Use custom location if provided; otherwise, fetch current location
+      String? location;
+      if (customLocation != null) {
+        location = "${customLocation.latitude}, ${customLocation.longitude}";
+      } else {
+        location = await getCurrentLocation();
+      }
+
       if (location == null) {
         debugPrint("Error: Unable to get location.");
         return;

@@ -51,16 +51,16 @@ class _PostIncidentState extends State<PostIncident> {
       });
     }
   }
-
   void _postIncident() {
     if (_formKey.currentState!.validate() &&
         _selectedType.isNotEmpty &&
-        _selectedLatLng != null) {
+        (_selectedLatLng != null)) {
       _uploadIncident.uploadIncident(
         headline: _headlineController.text.trim(),
         description: _descriptionController.text.trim(),
         type: _selectedType,
         images: _selectedImages,
+        customLocation: _selectedLatLng, // Pass selected location
         context: context,
       );
     } else {
@@ -69,6 +69,7 @@ class _PostIncidentState extends State<PostIncident> {
       );
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
