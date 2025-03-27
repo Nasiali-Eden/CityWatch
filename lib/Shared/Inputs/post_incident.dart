@@ -112,7 +112,7 @@ class _PostIncidentState extends State<PostIncident> {
               DropdownButtonFormField<String>(
                 value: _selectedType.isEmpty ? null : _selectedType,
                 decoration: _inputDecoration(),
-                items: ['Fire', 'Accident', 'Crime', 'Other']
+                items: ['Fire', 'Accident', 'Health', 'Floods', 'Other']
                     .map((type) => DropdownMenuItem(
                           value: type,
                           child: Text(type),
