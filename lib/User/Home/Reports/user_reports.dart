@@ -247,8 +247,8 @@ class _UserReportsState extends State<UserReports> {
                   color: Colors.white,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
                     ),
                   ),
                   elevation: 5,
@@ -259,19 +259,19 @@ class _UserReportsState extends State<UserReports> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(left: 16),
-                            child: const Text(
+                            margin: const EdgeInsets.only(left: 18),
+                            child: Text(
                               'Recent Updates',
                               style: TextStyle(
-                                color: Colors.teal,
-                                fontWeight: FontWeight.w500,
+                                color: Colors.teal[700],
+                                fontWeight: FontWeight.w700,
                                 fontSize: 17,
                               ),
                             ),
                           ),
                           IconButton(
-                            icon: const Icon(Icons.close,
-                                color: Colors.deepPurpleAccent),
+                            icon:  Icon(Icons.close,
+                                color: Colors.deepPurpleAccent[500]),
                             onPressed: _toggleDrawer,
                           ),
                         ],
@@ -311,7 +311,7 @@ class _UserReportsState extends State<UserReports> {
                                         vertical: 4, horizontal: 4),
                                     padding: const EdgeInsets.all(10),
                                     decoration: BoxDecoration(
-                                      color: Colors.grey[50],
+                                      color: Colors.white,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
                                         color: Colors.grey.shade300,
@@ -323,7 +323,7 @@ class _UserReportsState extends State<UserReports> {
                                       style: const TextStyle(
                                         color: Colors.black87,
                                         fontSize: 15,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
                                   ),

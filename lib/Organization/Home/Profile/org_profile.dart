@@ -338,72 +338,7 @@ class _OrgProfileState extends State<OrgProfile> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Privacy Policy",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Terms and Conditions",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "About CityWatch",
-                            style: TextStyle(
-                              color: maroon,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
+
                   ],
                 ),
               ),
@@ -411,69 +346,6 @@ class _OrgProfileState extends State<OrgProfile> {
                 height: 20,
               ),
 
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 8), // Adjust padding
-                margin:
-                const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[50],
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      child: Text(
-                        'Inbox',
-                        style: TextStyle(color: maroon),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 8), // Adjust padding
-                margin:
-                const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[50],
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      child: Text(
-                          'Feedback',
-                          style: TextStyle(color:maroon)
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 8), // Adjust padding
-                margin:
-                const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[50],
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      child: Text(
-                          'Switch Account',
-                          style: TextStyle(color: maroon)
-                      ),
-                    ),
-                  ],
-                ),
-              ),
 
               GestureDetector(
                 onTap: () async {
