@@ -25,7 +25,7 @@ public class MainActivity extends FlutterActivity {
             prefs.edit()
                     .putString(
                             "com.google.firebase.appcheck.debug.DEBUG_SECRET",
-                            "31F991C6-0702-44C0-AF76-1ACFEDB6E1C8"
+                            "your_key"
                     )
                     .apply();
         }
