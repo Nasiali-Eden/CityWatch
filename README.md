@@ -1,16 +1,27 @@
-# city_watch
+# City_Watch
 
-A new Flutter project.
+# 🌪️ Disaster Response Mobile App
 
-## Getting Started
+A mobile application designed to streamline communication, coordination, and resource management in times of disaster. This app helps affected individuals connect with emergency services, report incidents, locate safe zones, and access crucial updates in real-time.
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🆘 **Report Incidents**: Users can report emergencies with location, images, and descriptions.
+- 📍 **Interactive Map**: Shows disaster zones, relief centers, and active incidents with real-time updates.
+- 📦 **Request Aid**: Submit requests for food, shelter, water, or medical help.
+- 🔔 **Push Notifications**: Stay informed about urgent updates, weather warnings, and evacuation orders.
+- 🧭 **Navigation to Safe Zones**: Integrated with Google Maps to provide directions to nearby relief points.
+- 🔐 **User Authentication**: Secure login/signup system for citizens, volunteers, and officials.
+- 🗂️ **Role-Based Access**: Different dashboards for users, responders, and administrators.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🛠️ Tech Stack
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Frontend**: Flutter (Dart)
+- **Backend**: Firebase (Firestore, Auth, Storage, Cloud Functions)
+- **Maps**: Google Maps API
+- **Notifications**: Firebase Cloud Messaging (FCM)
+- **Image Storage**: Firebase Storage
+- **App Check**: Enabled for security
+
+
+
