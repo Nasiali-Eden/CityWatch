@@ -50,8 +50,6 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
       body: StreamBuilder<QuerySnapshot>(
         stream: collectionRef.snapshots(),
         builder: (context, snapshot) {
-          // For "Free Medical Services" and "Relief Aid", always show the notification,
-          // regardless of whether documents exist.
           if (widget.title == "Free Medical Services" ||
               widget.title == "Relief Aid") {
             if (!_dialogShown) {
@@ -83,7 +81,6 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
             );
           }
 
-          // For other titles, show the data from Firestore.
           if (snapshot.hasError) {
             return const Center(child: Text("Error loading data"));
           }
@@ -120,8 +117,6 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
     );
   }
 
-  /// Returns a reference to the correct Firestore sub-collection
-  /// based on the tapped title.
   CollectionReference _getSubCollection(String title) {
     final helpRef = FirebaseFirestore.instance.collection('Help');
 
@@ -145,7 +140,6 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
       case "Relief Aid":
         return helpRef.doc('Resources').collection('Aid');
       default:
-      // Fallback if title is unrecognized
         return helpRef.doc('Helplines').collection('Police');
     }
   }
@@ -159,6 +153,7 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
   }) {
     final screenWidth = MediaQuery.of(context).size.width;
     final cardWidth = screenWidth * 0.95;
+    final String? imagePath = _getImageForCategory(widget.title);
 
     return Container(
       width: cardWidth,
@@ -169,7 +164,7 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.black12..withAlpha((0.05 * 255).toInt()),
+            color: Colors.black12.withAlpha((0.05 * 255).toInt()),
             blurRadius: 5,
             offset: const Offset(0, 2),
           ),
@@ -177,7 +172,6 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
       ),
       child: Row(
         children: [
-          // Left side: textual details
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,8 +187,9 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
             ),
           ),
           const SizedBox(width: 12),
-          // Right side: placeholder image (80x80)
-          Container(
+          imagePath != null
+              ? Image.asset(imagePath, width: 80, height: 80, fit: BoxFit.cover)
+              : Container(
             width: 80,
             height: 80,
             decoration: BoxDecoration(
@@ -209,6 +204,25 @@ class _HelpChildScreenState extends State<HelpChildScreen> {
         ],
       ),
     );
+  }
+
+  String? _getImageForCategory(String title) {
+    switch (title) {
+      case "Police Services":
+        return "assets/police.png";
+      case "Ambulance Services":
+      case "Hospitals":
+        return "assets/hospital.png";
+      case "Firefighters":
+        return "assets/firefighter.png";
+      case "Kenya Red Cross":
+        return "assets/redcross.png";
+      case "Refugee Camps":
+      case "Government Shelters":
+        return "assets/refugee.png";
+      default:
+        return null; // Placeholder for categories without images
+    }
   }
 
   Widget _infoText(String text) {

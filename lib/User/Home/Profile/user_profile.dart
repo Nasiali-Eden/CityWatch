@@ -168,117 +168,6 @@ class _UserProfileState extends State<UserProfile> {
               ),
 
 
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.08,
-                        color: Colors.teal[600],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Text(
-                        'Notifications',
-                        style: TextStyle(
-                            color: Colors.deepPurpleAccent, fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 0.08,
-                        color: Colors.teal[600],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 3,
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 15, vertical: 10), // Adjust padding
-                margin:
-                const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[50],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Email Notifications",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Daily Notifications",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Turn off",
-                            style: TextStyle(
-                              color: maroon,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -338,79 +227,13 @@ class _UserProfileState extends State<UserProfile> {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Privacy Policy",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Terms and Conditions",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "About CityWatch",
-                            style: TextStyle(
-                              color: maroon,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.black54,
-                        ),
-                      ],
-                    ),
+
                   ],
                 ),
               ),
               SizedBox(
                 height: 20,
               ),
-
               Container(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 12, vertical: 8), // Adjust padding
@@ -425,28 +248,7 @@ class _UserProfileState extends State<UserProfile> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 2.0),
                       child: Text(
-                        'Inbox',
-                        style: TextStyle(color: maroon),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 8), // Adjust padding
-                margin:
-                const EdgeInsets.symmetric(horizontal: 24, vertical: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  color: Colors.grey[50],
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                      child: Text(
-                        'Feedback',
+                        'Email Us',
                         style: TextStyle(color:maroon)
                       ),
                     ),

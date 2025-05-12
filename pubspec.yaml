@@ -7,9 +7,9 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
+# Both the version and the build number may be overridden in Flutter
 # build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
+# In Android, build-name is used as versionName while build-number is used as versionCode.
 # Read more about Android versioning at https://developer.android.com/studio/publish/versioning
 # In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
 # Read more about iOS versioning at
@@ -31,40 +31,48 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Firebase dependencies
   firebase_auth: ^5.1.4
-
-
-
-  cloud_firestore: ^5.2.1
-  intl: ^0.20.1
-  provider: ^6.1.2
   firebase_core: ^3.3.0
-  permission_handler: ^11.3.1
-  flutter_phoenix: ^1.1.1
-
-
-  shimmer: ^3.0.0
-  image_picker: any
   firebase_storage: ^12.3.4
+  cloud_firestore: ^5.2.1
+  firebase_app_check: ^0.3.1+7
+
+  # UI & Utility dependencies
+  shimmer: ^3.0.0  # Used for loading placeholders
+  cupertino_icons: ^1.0.8
+  intl: ^0.20.1  # Internationalization
+  provider: ^6.1.2
+  shared_preferences: ^2.3.5  # Local storage
+
+  # Image handling
+  image_picker: any
   image_cropper: ^8.0.2
   image: ^4.3.0
-  uuid: ^4.5.1
-  shared_preferences: ^2.3.5
-  firebase_app_check: ^0.3.1+7
-  play_integrity_flutter: ^0.0.1
+  uuid: ^4.5.1  # Generate unique IDs
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+  # Permissions
+  permission_handler: ^11.3.1
+
+  # Navigation and Restart Functionality
+  flutter_phoenix: ^1.1.1
+
+  # Maps & Geolocation
   google_maps_flutter: ^2.11.0
   flutter_polyline_points: ^2.1.0
   geolocator: ^13.0.3
   geojson_vi: ^2.2.5
 
+  # Security & Integrity
+  play_integrity_flutter: ^0.0.1
+
+  # Splash Screen & App Icons
+  flutter_native_splash: ^2.4.4
+  flutter_launcher_icons: ^0.14.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.14.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -73,12 +81,22 @@ dev_dependencies:
   # rules and activating additional ones.
   lints: ^5.0.0
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+# Configuration for Flutter Native Splash
+flutter_native_splash:
+  color: "#ffffff" # White background
+  image: "assets/logo.png" # Your PNG logo for splash screen
+  android: true
+  ios: true
+  fullscreen: true # Ensures full-screen splash experience
+
+# Configuration for Flutter Launcher Icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.png" # Your app launcher icon
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -88,7 +106,7 @@ flutter:
   assets:
     - images/
     - pngs/
-    - assets/Kirinyaga.geojson
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
